@@ -35,3 +35,4 @@ try {
     $vehicles = [];
 }
 ?>
+<?php include 'includes/footer.php'; ?>
