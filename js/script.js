@@ -1,4 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Password Visibility Toggle using Event Delegation (bulletproof)
+    document.addEventListener('click', function(e) {
+        const toggleIcon = e.target.closest('.toggle-password');
+        if (toggleIcon) {
+            const wrapper = toggleIcon.closest('.input-with-icon');
+            if (wrapper) {
+                const input = wrapper.querySelector('input');
+                if (input) {
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        toggleIcon.classList.remove('fa-eye');
+                        toggleIcon.classList.add('fa-eye-slash');
+                    } else {
+                        input.type = 'password';
+                        toggleIcon.classList.remove('fa-eye-slash');
+                        toggleIcon.classList.add('fa-eye');
+                    }
+                }
+            }
+        }
+    });
+
     
     // Mobile navigation toggle
     const mobileToggle = document.querySelector('.mobile-toggle');
@@ -122,6 +145,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.disabled = false;
                 btn.innerHTML = 'Verify Code <i class="fas fa-check-circle"></i>';
             }
+        });
+    }
+
+    // User Profile Dropdown Toggle
+    const profileDropdown = document.querySelector('.user-profile-dropdown');
+    if (profileDropdown) {
+        const trigger = profileDropdown.querySelector('div');
+        const menu = profileDropdown.querySelector('.dropdown-menu');
+        
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        });
+        
+        window.addEventListener('click', () => {
+            menu.style.display = 'none';
         });
     }
 
