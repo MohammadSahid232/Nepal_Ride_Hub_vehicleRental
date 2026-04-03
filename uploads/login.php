@@ -1,3 +1,9 @@
+<?php 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+include 'includes/header.php'; 
+?>
 <style>
 /* Hide the default navbar and footer */
 .top-bar, .navbar-redesigned, .footer { display: none !important; }
@@ -5,7 +11,8 @@
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
     background: url('uploads/premium_bg.png') no-repeat center center/cover;
     position: relative;
 }
@@ -76,10 +83,10 @@ body::before {
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(20px);
     width: 100%;
-    max-width: 440px;
-    border-radius: 20px;
-    padding: 3rem;
-    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    max-width: 380px;
+    border-radius: 16px;
+    padding: 1.8rem;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
     display: flex;
     flex-direction: column;
 }
@@ -89,41 +96,41 @@ body::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 0.6rem;
-    margin-bottom: 2rem;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
 }
 .card-logo .icon {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     background-color: #3561ff;
     color: #fff;
-    border-radius: 8px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
+    font-size: 0.85rem;
 }
 .card-logo .titles { display: flex; flex-direction: column; }
-.card-logo .titles .main { font-weight: 800; color: #111; font-size: 0.95rem; line-height: 1.1; font-family: 'Inter', sans-serif; }
+.card-logo .titles .main { font-weight: 800; color: #111; font-size: 0.9rem; line-height: 1.1; font-family: 'Inter', sans-serif; }
 .card-logo .titles .sub { color: #777; font-size: 0.5rem; font-weight: 600; letter-spacing: 1px; }
 
 .auth-premium-card h2 {
     font-family: 'Outfit', sans-serif;
-    font-size: 2.2rem;
+    font-size: 1.6rem;
     font-weight: 800;
     color: #111;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 0.8rem;
     margin-top: 0;
 }
 
-.auth-form .form-group { margin-bottom: 1.5rem; }
+.auth-form .form-group { margin-bottom: 0.8rem; }
 .auth-form label {
     display: block;
     font-weight: 700;
     color: #333;
-    margin-bottom: 0.6rem;
-    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -132,18 +139,30 @@ body::before {
     display: flex;
     align-items: center;
 }
-.input-with-icon i {
+.input-with-icon > i:first-child {
     position: absolute;
-    left: 1.2rem;
+    left: 0.8rem;
     color: #888;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
+}
+.toggle-password {
+    position: absolute;
+    right: 0.8rem;
+    color: #888;
+    font-size: 0.9rem;
+    cursor: pointer;
+    z-index: 10;
+    pointer-events: auto;
+}
+.toggle-password:hover {
+    color: #3561ff;
 }
 .input-with-icon input {
     width: 100%;
-    padding: 1rem 1rem 1rem 3.2rem;
+    padding: 0.75rem 1rem 0.75rem 2.4rem;
     border: 1.5px solid #eee;
-    border-radius: 12px;
-    font-size: 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
     font-family: 'Inter', sans-serif;
     background: #fcfcfc;
     transition: all 0.3s ease;
@@ -152,19 +171,19 @@ body::before {
     outline: none; 
     border-color: #3561ff;
     background: #fff;
-    box-shadow: 0 0 0 4px rgba(53,97,255,0.1); 
+    box-shadow: 0 0 0 3px rgba(53,97,255,0.1); 
 }
 
 .btn-auth-submit {
     background-color: #3561ff;
     color: #fff;
     border: none;
-    border-radius: 12px;
-    padding: 1rem;
+    border-radius: 8px;
+    padding: 0.8rem;
     width: 100%;
-    margin: 2rem 0 1.5rem;
+    margin: 0.8rem 0;
     display: block;
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-weight: 700;
     cursor: pointer;
     font-family: 'Inter', sans-serif;
@@ -178,7 +197,7 @@ body::before {
 
 .auth-links-group {
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #666;
 }
 .auth-links-group a {
@@ -187,28 +206,35 @@ body::before {
     font-weight: 700;
 }
 .auth-links-group a:hover { text-decoration: underline; }
-.auth-links-group p { margin: 0.5rem 0; }
+.auth-links-group p { margin: 0.4rem 0; }
+
+.divider {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #999;
+    margin: 0.8rem 0 !important;
+}
 
 .auth-social {
-    margin-top: 2rem;
+    margin-top: 0.2rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 0.5rem;
 }
 .btn-social {
     background-color: #fff;
     color: #444;
     border: 1.5px solid #eee;
-    border-radius: 12px;
-    padding: 1rem;
+    border-radius: 8px;
+    padding: 0.7rem;
     width: 100%;
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-weight: 600;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: 0.8rem;
     font-family: 'Inter', sans-serif;
     text-decoration: none;
     transition: all 0.2s ease;
@@ -218,9 +244,10 @@ body::before {
     border-color: #ddd;
     transform: translateY(-1px);
 }
-.btn-social img { width: 20px; height: 20px; }
+.btn-social img { width: 16px; height: 16px; }
 
 @media (max-width: 900px) {
+    body { height: auto; overflow: auto; min-height: 100vh; }
     .auth-premium-wrapper {
         flex-direction: column;
         justify-content: center;
@@ -273,11 +300,12 @@ body::before {
                 <div class="input-with-icon">
                     <i class="fa-solid fa-lock"></i>
                     <input type="password" id="password" name="password" placeholder="••••••••" required>
+                    <i class="fa-regular fa-eye toggle-password"></i>
                 </div>
             </div>
             
-            <div style="text-align: right; margin-bottom: 1.5rem;">
-                <a href="forgot_password.php" style="color: #3561ff; font-weight: 700; text-decoration: none; font-size: 0.85rem;">Forgot Password?</a>
+            <div style="text-align: right; margin-bottom: 0.5rem;">
+                <a href="forgot_password.php" style="color: #3561ff; font-weight: 700; text-decoration: none; font-size: 0.75rem;">Forgot Password?</a>
             </div>
 
             <button type="submit" class="btn-auth-submit" id="loginBtn">Sign in</button>
@@ -296,7 +324,7 @@ body::before {
             </a>
         </div>
 
-        <div class="auth-links-group" style="margin-top: 2.5rem;">
+        <div class="auth-links-group" style="margin-top: 1rem;">
             <p>Don't have an account? <a href="register.php">Create Account</a></p>
         </div>
     </div>
@@ -325,6 +353,28 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
             loginAlert.textContent = data.message;
         }
     });
+});
+
+// Password Visibility Toggle using Event Delegation
+document.addEventListener('click', function(e) {
+    const toggleIcon = e.target.closest('.toggle-password');
+    if (toggleIcon) {
+        const wrapper = toggleIcon.closest('.input-with-icon');
+        if (wrapper) {
+            const input = wrapper.querySelector('input');
+            if (input) {
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    toggleIcon.classList.remove('fa-eye');
+                    toggleIcon.classList.add('fa-eye-slash');
+                } else {
+                    input.type = 'password';
+                    toggleIcon.classList.remove('fa-eye-slash');
+                    toggleIcon.classList.add('fa-eye');
+                }
+            }
+        }
+    }
 });
 </script>
 </body>
