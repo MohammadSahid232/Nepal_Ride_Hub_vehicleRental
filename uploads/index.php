@@ -1,6 +1,6 @@
 <?php
-include 'includes/header.php';
-require_once('includes/db_connect.php');
+include '../includes/header.php';
+require_once('../includes/db_connect.php');
 
 try {
     $stmtVehicles = $pdo->query("SELECT * FROM vehicles WHERE status = 'available' ORDER BY created_at DESC LIMIT 3");
@@ -372,4 +372,4 @@ try {
 
 </script>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

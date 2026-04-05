@@ -198,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.innerHTML = 'Processing...';
 
             try {
-                const response = await fetch('api/manage_bookings.php?action=create', {
+                const response = await fetch('../api/manage_bookings.php?action=create', {
                     method: 'POST', body: formData
                 });
                 const data = await response.json();
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.innerHTML = 'Uploading...';
 
             try {
-                const response = await fetch('api/manage_users.php?action=upload_document', {
+                const response = await fetch('../api/manage_users.php?action=upload_document', {
                     method: 'POST', body: formData
                 });
                 const data = await response.json();

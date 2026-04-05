@@ -6,8 +6,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'customer') {
     header('Location: login.php');
     exit;
 }
-include 'includes/header.php';
-require_once 'includes/db_connect.php';
+include '../includes/header.php';
+require_once '../includes/db_connect.php';
 
 $userId = $_SESSION['user_id'];
 
@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.innerHTML = 'Uploading...';
 
             try {
-                const response = await fetch('api/manage_users.php?action=upload_document', {
+                const response = await fetch('../api/manage_users.php?action=upload_document', {
                     method: 'POST',
                     body: formData
                 });
@@ -195,4 +195,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

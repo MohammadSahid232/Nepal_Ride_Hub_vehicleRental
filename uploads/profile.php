@@ -6,8 +6,8 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;
 }
-include 'includes/header.php';
-require_once 'includes/db_connect.php';
+include '../includes/header.php';
+require_once '../includes/db_connect.php';
 ?>
 
 $userId = $_SESSION['user_id'];
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const alertEl = document.getElementById('profileAlert');
         const formData = new FormData(profileForm);
         
-        const response = await fetch('api/manage_users.php?action=update_profile', {
+        const response = await fetch('../api/manage_users.php?action=update_profile', {
             method: 'POST',
             body: formData
         });
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const alertEl = document.getElementById('docAlert');
         const formData = new FormData(docForm);
         
-        const response = await fetch('api/manage_users.php?action=upload_document', {
+        const response = await fetch('../api/manage_users.php?action=upload_document', {
             method: 'POST',
             body: formData
         });
@@ -187,4 +187,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

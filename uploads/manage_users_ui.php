@@ -1,10 +1,10 @@
 <?php
-include 'includes/header.php';
+include '../includes/header.php';
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header('Location: ../uploads/login.php');
     exit;
 }
-require_once 'includes/db_connect.php';
+require_once '../includes/db_connect.php';
 
 // Fetch all customers
 $stmt = $pdo->query("SELECT id, name, email, phone, created_at FROM users WHERE role = 'customer' ORDER BY created_at DESC");
@@ -108,7 +108,7 @@ async function viewUserDocs(userId, userName) {
     modal.style.display = 'flex';
     
     try {
-        const response = await fetch('api/manage_users.php?action=get_user_documents&user_id=' + userId);
+        const response = await fetch('../api/manage_users.php?action=get_user_documents&user_id=' + userId);
         const data = await response.json();
         
         if (data.success) {
@@ -156,7 +156,7 @@ async function updateDocStatus(docId, status) {
     formData.append('status', status);
     
     try {
-        const response = await fetch('api/manage_users.php?action=verify_document', {
+        const response = await fetch('../api/manage_users.php?action=verify_document', {
             method: 'POST',
             body: formData
         });
@@ -185,4 +185,4 @@ window.onclick = function(event) {
 }
 </script>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

@@ -1,5 +1,5 @@
 <?php
-require_once 'includes/db_connect.php';
+require_once '../includes/db_connect.php';
 
 echo "<h2>Executing V2 Database Updates...</h2>";
 

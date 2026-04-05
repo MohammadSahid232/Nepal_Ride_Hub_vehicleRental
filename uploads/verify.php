@@ -7,7 +7,7 @@ if (!isset($_SESSION['temp_user_id']) || !isset($_SESSION['verification_code']))
     header("Location: login.php");
     exit;
 }
-include 'includes/header.php'; 
+include '../includes/header.php'; 
 ?>
 
 <section class="auth-section">
@@ -39,4 +39,4 @@ include 'includes/header.php';
     </div>
 </section>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

@@ -2,7 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include 'includes/header.php'; 
+include '../includes/header.php'; 
 ?>
 <style>
 /* Hide the default navbar and footer */
@@ -314,11 +314,11 @@ body::before {
         <div class="divider"><span>OR CONTINUE WITH</span></div>
 
         <div class="auth-social">
-            <a href="api/oauth_google.php?action=login" class="btn-social" style="background: #fdfdfd; border-color: #eee;">
+            <a href="../api/oauth_google.php?action=login" class="btn-social" style="background: #fdfdfd; border-color: #eee;">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google"> 
                 <span style="font-weight: 700;">Google Account</span>
             </a>
-            <a href="api/oauth_facebook.php?action=login" class="btn-social" style="background: #fdfdfd; border-color: #eee;">
+            <a href="../api/oauth_facebook.php?action=login" class="btn-social" style="background: #fdfdfd; border-color: #eee;">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook"> 
                 <span style="font-weight: 700;">Facebook Account</span>
             </a>
@@ -334,7 +334,7 @@ body::before {
 document.getElementById('loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const formData = new FormData(this);
-    fetch('api/auth.php?action=login', {
+    fetch('../api/auth.php?action=login', {
         method: 'POST',
         body: formData
     })

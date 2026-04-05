@@ -1,10 +1,10 @@
 <?php
-include 'includes/header.php';
+include '../includes/header.php';
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header('Location: ../uploads/login.php');
     exit;
 }
-require_once 'includes/db_connect.php';
+require_once '../includes/db_connect.php';
 
 // Fetch all bookings
 $stmt = $pdo->query("
@@ -97,7 +97,7 @@ async function updateBooking(id, status) {
     formData.append('status', status);
 
     try {
-        const response = await fetch('api/manage_bookings.php?action=update_status', {
+        const response = await fetch('../api/manage_bookings.php?action=update_status', {
             method: 'POST', body: formData
         });
         const data = await response.json();
@@ -113,4 +113,4 @@ async function updateBooking(id, status) {
 }
 </script>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>
