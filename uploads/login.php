@@ -13,7 +13,7 @@ body {
     font-family: 'Inter', sans-serif;
     height: 100vh;
     overflow: hidden;
-    background: url('uploads/premium_bg.png') no-repeat center center/cover;
+    background: url('vehicles/premium_bg.png') no-repeat center center/cover;
     position: relative;
 }
 
