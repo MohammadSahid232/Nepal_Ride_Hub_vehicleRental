@@ -1,10 +1,10 @@
 <?php
-include '../includes/header.php';
+include 'includes/header.php';
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    header('Location: ../uploads/login.php');
+    header('Location: uploads/login.php');
     exit;
 }
-require_once '../includes/db_connect.php';
+require_once 'includes/db_connect.php';
 
 // Stats
 $totalUsers = $pdo->query("SELECT COUNT(*) FROM users WHERE role='customer'")->fetchColumn();
@@ -121,4 +121,4 @@ async function verifyDoc(docId, status) {
 }
 </script>
 
-<?php include '../includes/footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

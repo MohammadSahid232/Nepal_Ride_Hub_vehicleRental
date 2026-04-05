@@ -1,5 +1,5 @@
 <?php
-require_once '../includes/db_connect.php';
+require_once 'includes/db_connect.php';
 
 echo "<h2>Updating Database Schema...</h2>";
 

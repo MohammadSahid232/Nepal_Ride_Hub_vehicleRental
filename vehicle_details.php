@@ -1,6 +1,6 @@
 <?php
-include '../includes/header.php';
-require_once '../includes/db_connect.php';
+include 'includes/header.php';
+require_once 'includes/db_connect.php';
 
 $id = (int)($_GET['id'] ?? 0);
 $stmt = $pdo->prepare("SELECT * FROM vehicles WHERE id = ?");
@@ -9,7 +9,7 @@ $vehicle = $stmt->fetch();
 
 if (!$vehicle) {
     echo "<div class='container' style='padding: 4rem 0; text-align: center;'><h2>Vehicle not found.</h2><a href='vehicles.php' class='btn btn-outline'>Back to Fleet</a></div>";
-    include '../includes/footer.php';
+    include 'includes/footer.php';
     exit;
 }
 
@@ -265,4 +265,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<?php include '../includes/footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

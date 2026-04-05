@@ -2,7 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include '../includes/header.php'; 
+include 'includes/header.php'; 
 ?>
 <style>
 /* Hide the default navbar and footer */
