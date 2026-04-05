@@ -1,10 +1,22 @@
 <?php
+<<<<<<< HEAD:uploads/profile.php
 include '../includes/header.php';
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'customer') {
     header('Location: ../uploads/login.php');
     exit;
 }
 require_once '../includes/db_connect.php';
+=======
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit;
+}
+include 'includes/header.php';
+require_once 'includes/db_connect.php';
+>>>>>>> origin/sahid:profile.php
 
 $userId = $_SESSION['user_id'];
 
@@ -12,6 +24,11 @@ $userId = $_SESSION['user_id'];
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->execute([$userId]);
 $user = $stmt->fetch();
+
+if (!$user) {
+    header('Location: api/auth.php?action=logout');
+    exit;
+}
 
 // Fetch Documents
 $stmtDocs = $pdo->prepare("SELECT * FROM user_documents WHERE user_id = ? ORDER BY uploaded_at DESC");
@@ -178,4 +195,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<<<<<<< HEAD:uploads/profile.php
 <?php include '../includes/footer.php'; ?>
+=======
+<?php include 'includes/footer.php'; ?>
+>>>>>>> origin/sahid:profile.php
