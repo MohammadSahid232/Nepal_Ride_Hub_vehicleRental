@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     // Password Visibility Toggle using Event Delegation (bulletproof)
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
         const toggleIcon = e.target.closest('.toggle-password');
         if (toggleIcon) {
             const wrapper = toggleIcon.closest('.input-with-icon');
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    
+
     // Mobile navigation toggle
     const mobileToggle = document.querySelector('.mobile-toggle');
     const navLinks = document.querySelector('.nav-links');
@@ -153,12 +153,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (profileDropdown) {
         const trigger = profileDropdown.querySelector('div');
         const menu = profileDropdown.querySelector('.dropdown-menu');
-        
+
         trigger.addEventListener('click', (e) => {
             e.stopPropagation();
             menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
         });
-        
+
         window.addEventListener('click', () => {
             menu.style.display = 'none';
         });
@@ -171,21 +171,21 @@ document.addEventListener('DOMContentLoaded', () => {
         botDiv.style.bottom = '20px';
         botDiv.style.right = '20px';
         botDiv.style.zIndex = '9999';
-        
+
         const botBtn = document.createElement('button');
         botBtn.innerHTML = '<i class="fas fa-comment-dots"></i> Help';
         botBtn.className = 'btn btn-primary';
         botBtn.style.borderRadius = '50px';
         botBtn.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)';
-        
+
         botBtn.onclick = () => {
             alert("Nepal Ride Hub Assistant: Hello! Our 24/7 AI Chatbot integration is currently running in simulation mode. How can we assist your journey today?");
         };
-        
+
         botDiv.appendChild(botBtn);
         document.body.appendChild(botDiv);
     };
-    
+
     // Initialize AI Assistant
     createChatbot();
 });

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 include 'includes/header.php';
 require_once 'includes/db_connect.php';
@@ -36,8 +35,7 @@ try {
     $vehicles = [];
 }
 ?>
-<?php include 'includes/footer.php'; ?>
-=======
+
 <section style="background: var(--primary-blue); padding: 3rem 0; color: white; text-align: center;">
     <div class="container">
         <h2>Our Fleet</h2>
@@ -114,4 +112,5 @@ try {
 
     </div>
 </section>
->>>>>>> origin/Suraj-K.Sah
+
+<?php include 'includes/footer.php'; ?>

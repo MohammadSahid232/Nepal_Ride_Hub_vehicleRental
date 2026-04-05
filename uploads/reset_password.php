@@ -1,3 +1,13 @@
+<?php 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if (!isset($_SESSION['reset_email'])) {
+    header('Location: forgot_password.php');
+    exit;
+}
+include 'includes/header.php'; 
+?>
 <style>
 /* Hide the default navbar and footer */
 .top-bar, .navbar-redesigned, .footer { display: none !important; }

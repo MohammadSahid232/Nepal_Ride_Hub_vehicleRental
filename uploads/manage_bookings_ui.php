@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 include 'includes/header.php';
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
@@ -17,7 +16,7 @@ $stmt = $pdo->query("
 ");
 $bookings = $stmt->fetchAll();
 ?>
-=======
+
 <section style="padding: 4rem 0;">
     <div class="container">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
@@ -113,4 +112,5 @@ async function updateBooking(id, status) {
     }
 }
 </script>
->>>>>>> origin/prajwal
+
+<?php include 'includes/footer.php'; ?>
