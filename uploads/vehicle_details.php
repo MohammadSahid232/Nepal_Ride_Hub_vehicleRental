@@ -1,6 +1,6 @@
 <?php
 include '../includes/header.php';
-require_once 'includes/db_connect.php';
+require_once '../includes/db_connect.php';
 
 $id = (int)($_GET['id'] ?? 0);
 $stmt = $pdo->prepare("SELECT * FROM vehicles WHERE id = ?");

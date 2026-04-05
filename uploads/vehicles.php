@@ -1,6 +1,6 @@
 <?php
 include '../includes/header.php';
-require_once 'includes/db_connect.php';
+require_once '../includes/db_connect.php';
 
 $typeFilter = $_GET['type'] ?? '';
 $locFilter = $_GET['location'] ?? ''; // Search matching name or brand currently since location is not in vehicles directly (gps simulated)

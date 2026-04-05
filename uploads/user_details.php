@@ -1,10 +1,10 @@
 <?php
 include '../includes/header.php';
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: ../uploads/login.php');
     exit;
 }
-require_once 'includes/db_connect.php';
+require_once '../includes/db_connect.php';
 
 $userId = $_SESSION['user_id'];
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
