@@ -8,7 +8,6 @@ if (!isset($_SESSION['user_id'])) {
 }
 include '../includes/header.php';
 require_once '../includes/db_connect.php';
-?>
 
 $userId = $_SESSION['user_id'];
 
@@ -18,7 +17,7 @@ $stmt->execute([$userId]);
 $user = $stmt->fetch();
 
 if (!$user) {
-    header('Location: api/auth.php?action=logout');
+    header('Location: ../api/auth.php?action=logout');
     exit;
 }
 

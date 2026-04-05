@@ -24,6 +24,6 @@
             <p>&copy; <?php echo date('Y'); ?> Nepal Ride Hub. All rights reserved.</p>
         </div>
     </footer>
-    <script src="js/script.js?v=<?php echo time(); ?>"></script>
+    <script src="<?php echo $basePath; ?>js/script.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>
