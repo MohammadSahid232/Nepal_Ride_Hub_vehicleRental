@@ -160,8 +160,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 } elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && $action === 'logout') {
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
     session_destroy();
-    header("Location: ../login.php");
+    
+    // Dynamic redirect based on where the user logged out from or where the file exists
+    if (file_exists(__DIR__ . '/../uploads/login.php')) {
+        header("Location: ../uploads/login.php");
+    } else {
+        header("Location: ../login.php");
+    }
     exit;
 } else {
     echo json_encode(['success' => false, 'message' => 'Invalid request.']);

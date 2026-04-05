@@ -1,10 +1,13 @@
 <?php
-include 'includes/header.php';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    header('Location: uploads/login.php');
+    header('Location: login.php');
     exit;
 }
-require_once 'includes/db_connect.php';
+include '../includes/header.php';
+require_once '../includes/db_connect.php';
 
 // Fetch all vehicles
 $stmt = $pdo->query("SELECT * FROM vehicles ORDER BY created_at DESC");
@@ -136,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.innerHTML = 'Adding...';
 
             try {
-                const response = await fetch('api/manage_vehicles.php?action=add_vehicle', {
+                const response = await fetch('../api/manage_vehicles.php?action=add_vehicle', {
                     method: 'POST',
                     body: formData
                 });
@@ -171,7 +174,7 @@ async function deleteVehicle(id) {
     formData.append('id', id);
 
     try {
-        const response = await fetch('api/manage_vehicles.php?action=delete_vehicle', {
+        const response = await fetch('../api/manage_vehicles.php?action=delete_vehicle', {
             method: 'POST', body: formData
         });
         const data = await response.json();
@@ -186,5 +189,4 @@ async function deleteVehicle(id) {
     }
 }
 </script>
-
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

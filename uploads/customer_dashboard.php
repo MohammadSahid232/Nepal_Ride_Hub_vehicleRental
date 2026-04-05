@@ -1,10 +1,13 @@
 <?php
-include 'includes/header.php';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'customer') {
-    header('Location: uploads/login.php');
+    header('Location: login.php');
     exit;
 }
-require_once 'includes/db_connect.php';
+include '../includes/header.php';
+require_once '../includes/db_connect.php';
 
 $userId = $_SESSION['user_id'];
 
@@ -163,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.innerHTML = 'Uploading...';
 
             try {
-                const response = await fetch('api/manage_users.php?action=upload_document', {
+                const response = await fetch('../api/manage_users.php?action=upload_document', {
                     method: 'POST',
                     body: formData
                 });

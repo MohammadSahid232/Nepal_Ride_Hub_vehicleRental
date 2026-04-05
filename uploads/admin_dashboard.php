@@ -1,10 +1,13 @@
 <?php
-include 'includes/header.php';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    header('Location: uploads/login.php');
+    header('Location: login.php');
     exit;
 }
-require_once 'includes/db_connect.php';
+include '../includes/header.php';
+require_once '../includes/db_connect.php';
 
 // Stats
 $totalUsers = $pdo->query("SELECT COUNT(*) FROM users WHERE role='customer'")->fetchColumn();
@@ -68,7 +71,7 @@ $pendingDocs = $pdo->query("SELECT COUNT(*) FROM user_documents WHERE status='pe
 document.addEventListener('DOMContentLoaded', async () => {
     // Load pending docs
     try {
-        const response = await fetch('api/manage_users.php?action=list_pending_docs');
+        const response = await fetch('../api/manage_users.php?action=list_pending_docs');
         const data = await response.json();
         const docsTarget = document.getElementById('docsTarget');
         
@@ -105,7 +108,7 @@ async function verifyDoc(docId, status) {
     formData.append('status', status);
 
     try {
-        const response = await fetch('api/manage_users.php?action=verify_document', {
+        const response = await fetch('../api/manage_users.php?action=verify_document', {
             method: 'POST', body: formData
         });
         const data = await response.json();

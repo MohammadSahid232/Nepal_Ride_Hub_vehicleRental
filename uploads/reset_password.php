@@ -125,7 +125,7 @@ body::before {
 document.getElementById('resetForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const formData = new FormData(this);
-    fetch('api/auth.php?action=reset_password', {
+    fetch('../api/auth.php?action=reset_password', {
         method: 'POST',
         body: formData
     })

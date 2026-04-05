@@ -3,6 +3,9 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+// Calculate base path for internal links
+$basePath = (strpos($_SERVER['PHP_SELF'], '/uploads/') !== false) ? '../' : './';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +17,7 @@ if (session_status() === PHP_SESSION_NONE) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,600&family=Outfit:ital,wght@0,400;0,600;0,800;1,800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="<?php echo $basePath; ?>css/style.css">
 </head>
 <body>
     <div class="top-bar">
@@ -59,7 +62,7 @@ if (session_status() === PHP_SESSION_NONE) {
                             <a href="user_details.php" style="display: block; padding: 0.8rem 1.2rem; color: #333; text-decoration: none; border-bottom: 1px solid #eee; font-weight: 600;">User Details</a>
                             <a href="profile.php" style="display: block; padding: 0.8rem 1.2rem; color: #333; text-decoration: none; border-bottom: 1px solid #eee; font-weight: 600;">Edit Profile</a>
                             <a href="<?php echo ($_SESSION['role']==='admin'?'admin_dashboard.php':'customer_dashboard.php'); ?>" style="display: block; padding: 0.8rem 1.2rem; color: #333; text-decoration: none; border-bottom: 1px solid #eee; font-weight: 600;">Dashboard</a>
-                            <a href="api/auth.php?action=logout" style="display: block; padding: 0.8rem 1.2rem; color: #da291c; text-decoration: none; font-weight: 600;">Logout</a>
+                            <a href="<?php echo $basePath; ?>api/auth.php?action=logout" style="display: block; padding: 0.8rem 1.2rem; color: #da291c; text-decoration: none; font-weight: 600;">Logout</a>
                         </div>
                     </li>
                 <?php else: ?>

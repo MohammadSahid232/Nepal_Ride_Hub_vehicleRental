@@ -108,7 +108,7 @@ async function viewUserDocs(userId, userName) {
     modal.style.display = 'flex';
     
     try {
-        const response = await fetch('api/manage_users.php?action=get_user_documents&user_id=' + userId);
+        const response = await fetch('../api/manage_users.php?action=get_user_documents&user_id=' + userId);
         const data = await response.json();
         
         if (data.success) {
@@ -156,7 +156,7 @@ async function updateDocStatus(docId, status) {
     formData.append('status', status);
     
     try {
-        const response = await fetch('api/manage_users.php?action=verify_document', {
+        const response = await fetch('../api/manage_users.php?action=verify_document', {
             method: 'POST',
             body: formData
         });

@@ -53,7 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.innerHTML = 'Logging in... <i class="fas fa-spinner fa-spin"></i>';
 
             try {
-                const response = await fetch('api/auth.php?action=login', {
+                const apiPath = window.location.pathname.includes('/uploads/') ? '../api/auth.php' : 'api/auth.php';
+                const response = await fetch(apiPath + '?action=login', {
                     method: 'POST',
                     body: formData
                 });
@@ -88,7 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.innerHTML = 'Registering... <i class="fas fa-spinner fa-spin"></i>';
 
             try {
-                const response = await fetch('api/auth.php?action=register', {
+                const apiPath = window.location.pathname.includes('/uploads/') ? '../api/auth.php' : 'api/auth.php';
+                const response = await fetch(apiPath + '?action=register', {
                     method: 'POST',
                     body: formData
                 });
@@ -125,7 +127,8 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.innerHTML = 'Verifying... <i class="fas fa-spinner fa-spin"></i>';
 
             try {
-                const response = await fetch('api/auth.php?action=verify_code', {
+                const apiPath = window.location.pathname.includes('/uploads/') ? '../api/auth.php' : 'api/auth.php';
+                const response = await fetch(apiPath + '?action=verify_code', {
                     method: 'POST', body: formData
                 });
                 const data = await response.json();

@@ -1,12 +1,4 @@
 <?php
-<<<<<<< HEAD:uploads/profile.php
-include '../includes/header.php';
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'customer') {
-    header('Location: ../uploads/login.php');
-    exit;
-}
-require_once '../includes/db_connect.php';
-=======
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -14,9 +6,8 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;
 }
-include 'includes/header.php';
-require_once 'includes/db_connect.php';
->>>>>>> origin/sahid:profile.php
+include '../includes/header.php';
+require_once '../includes/db_connect.php';
 
 $userId = $_SESSION['user_id'];
 
@@ -26,7 +17,7 @@ $stmt->execute([$userId]);
 $user = $stmt->fetch();
 
 if (!$user) {
-    header('Location: api/auth.php?action=logout');
+    header('Location: ../api/auth.php?action=logout');
     exit;
 }
 
@@ -162,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const alertEl = document.getElementById('profileAlert');
         const formData = new FormData(profileForm);
         
-        const response = await fetch('api/manage_users.php?action=update_profile', {
+        const response = await fetch('../api/manage_users.php?action=update_profile', {
             method: 'POST',
             body: formData
         });
@@ -181,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const alertEl = document.getElementById('docAlert');
         const formData = new FormData(docForm);
         
-        const response = await fetch('api/manage_users.php?action=upload_document', {
+        const response = await fetch('../api/manage_users.php?action=upload_document', {
             method: 'POST',
             body: formData
         });
@@ -195,8 +186,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<<<<<<< HEAD:uploads/profile.php
 <?php include '../includes/footer.php'; ?>
-=======
-<?php include 'includes/footer.php'; ?>
->>>>>>> origin/sahid:profile.php
