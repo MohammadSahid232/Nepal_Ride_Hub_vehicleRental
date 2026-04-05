@@ -1,12 +1,4 @@
 <?php
-<<<<<<< HEAD:uploads/profile.php
-include '../includes/header.php';
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'customer') {
-    header('Location: ../uploads/login.php');
-    exit;
-}
-require_once '../includes/db_connect.php';
-=======
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -16,7 +8,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 include 'includes/header.php';
 require_once 'includes/db_connect.php';
->>>>>>> origin/sahid:profile.php
+?>
 
 $userId = $_SESSION['user_id'];
 
@@ -195,8 +187,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<<<<<<< HEAD:uploads/profile.php
-<?php include '../includes/footer.php'; ?>
-=======
 <?php include 'includes/footer.php'; ?>
->>>>>>> origin/sahid:profile.php
