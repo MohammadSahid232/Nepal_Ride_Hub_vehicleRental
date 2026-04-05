@@ -1,10 +1,18 @@
 <?php
+<<<<<<< HEAD
 include 'includes/header.php';
+=======
+include '../includes/header.php';
+>>>>>>> origin/prajwal
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header('Location: ../uploads/login.php');
     exit;
 }
+<<<<<<< HEAD
 require_once 'includes/db_connect.php';
+=======
+require_once '../includes/db_connect.php';
+>>>>>>> origin/prajwal
 
 // Fetch all vehicles
 $stmt = $pdo->query("SELECT * FROM vehicles ORDER BY created_at DESC");
@@ -187,4 +195,8 @@ async function deleteVehicle(id) {
 }
 </script>
 
+<<<<<<< HEAD
 <?php include 'includes/footer.php'; ?>
+=======
+<?php include '../includes/footer.php'; ?>
+>>>>>>> origin/prajwal
