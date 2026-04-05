@@ -1,8 +1,8 @@
-<?php include 'includes/header.php'; ?>
+<?php include '../includes/header.php'; ?>
 <?php 
 // Only allow access if temporary session is set
 if (!isset($_SESSION['temp_user_id']) || !isset($_SESSION['verification_code'])) {
-    header("Location: login.php");
+    header("Location: ../uploads/login.php");
     exit;
 }
 ?>
@@ -36,4 +36,4 @@ if (!isset($_SESSION['temp_user_id']) || !isset($_SESSION['verification_code']))
     </div>
 </section>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

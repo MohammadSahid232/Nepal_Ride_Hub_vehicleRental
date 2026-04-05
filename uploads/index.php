@@ -1,5 +1,5 @@
 <?php
-include 'includes/header.php';
+include '../includes/header.php';
 require_once 'includes/db_connect.php';
 
 try {
@@ -372,4 +372,4 @@ try {
 
 </script>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

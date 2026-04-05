@@ -1,5 +1,5 @@
 <?php
-include 'includes/header.php';
+include '../includes/header.php';
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
     header('Location: login.php');
     exit;
@@ -187,4 +187,4 @@ async function deleteVehicle(id) {
 }
 </script>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

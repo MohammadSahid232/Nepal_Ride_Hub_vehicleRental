@@ -1,5 +1,5 @@
 <?php
-include 'includes/header.php';
+include '../includes/header.php';
 if (!isset($_SESSION['user_id'])) {
     header('Location: login.php');
     exit;
@@ -118,4 +118,4 @@ $isFullyVerified = $verifiedDocs >= 2; // Assuming citizenship and license
     </div>
 </div>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>

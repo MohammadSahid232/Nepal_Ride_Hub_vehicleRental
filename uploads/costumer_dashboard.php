@@ -1,5 +1,5 @@
 <?php
-include 'includes/header.php';
+include '../includes/header.php';
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'customer') {
     header('Location: login.php');
     exit;
@@ -192,4 +192,4 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<?php include 'includes/footer.php'; ?>
+<?php include '../includes/footer.php'; ?>
