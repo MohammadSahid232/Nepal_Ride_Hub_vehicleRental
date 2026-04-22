@@ -36,7 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } catch (PDOException $e) {
             echo json_encode(['success' => false, 'message' => 'Registration failed: ' . $e->getMessage()]);
         }
-    } elseif ($action === 'login') {
+    } 
+    elseif ($action === 'login') {
         $email = trim($_POST['email'] ?? '');
         $password = trim($_POST['password'] ?? '');
 
@@ -51,39 +52,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user = $stmt->fetch();
 
             if ($user && password_verify($password, $user['password_hash'])) {
-                if ($user['role'] === 'customer') {
-                    // Generate 6-digit code for 2FA
-                    $code = rand(100000, 999999);
+                // Set Session Variables directly (No 2FA required)
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['name'] = $user['name'];
+                $_SESSION['role'] = $user['role'];
 
-                    // Set temporary session
-                    $_SESSION['temp_user_id'] = $user['id'];
-                    $_SESSION['temp_user_name'] = $user['name'];
-                    $_SESSION['temp_user_role'] = $user['role'];
-                    $_SESSION['verification_code'] = $code;
-
-                    // Send Email containing code
-                    $subject = "Login Verification Code - Nepal Ride Hub";
-                    $message = "Hello " . $user['name'] . ",\n\nYour 6-digit verification code is: " . $code . "\n\nPlease enter this code to securely log in. Do not share this with anyone.";
-                    $headers = "From: noreply@nepalridehub.com";
-
-                    // Attempt to send (might fail on local unconfigured XAMPP, so we also pass it or show it in dev)
-                    @mail($email, $subject, $message, $headers);
-
-                    echo json_encode(['success' => true, 'redirect' => 'verify.php', 'message' => 'Verification code sent to your email.']);
-                } else {
-                    // Admin logs in directly without code
-                    $_SESSION['user_id'] = $user['id'];
-                    $_SESSION['name'] = $user['name'];
-                    $_SESSION['role'] = $user['role'];
-                    echo json_encode(['success' => true, 'redirect' => 'admin_dashboard.php', 'message' => 'Login successful!']);
-                }
+                // Determine redirect path
+                $redirect = ($user['role'] === 'admin') ? 'admin_dashboard.php' : 'index.php';
+                
+                echo json_encode(['success' => true, 'redirect' => $redirect, 'message' => 'Login successful!']);
             } else {
                 echo json_encode(['success' => false, 'message' => 'Invalid email or password.']);
             }
         } catch (PDOException $e) {
             echo json_encode(['success' => false, 'message' => 'Login error.']);
         }
-    } elseif ($action === 'verify_code') {
+    }
+    elseif ($action === 'verify_code') {
         $code = trim($_POST['code'] ?? '');
         if (empty($code)) {
             echo json_encode(['success' => false, 'message' => 'Please enter the verification code.']);
@@ -95,16 +80,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $_SESSION['temp_user_id'];
             $_SESSION['name'] = $_SESSION['temp_user_name'];
             $_SESSION['role'] = $_SESSION['temp_user_role'];
-
+            
             // Clean up temporary variables
             unset($_SESSION['temp_user_id'], $_SESSION['temp_user_name'], $_SESSION['temp_user_role'], $_SESSION['verification_code']);
-
+            
             // Redirect customer to home page index.php
             echo json_encode(['success' => true, 'redirect' => 'index.php', 'message' => 'Verification successful!']);
         } else {
             echo json_encode(['success' => false, 'message' => 'Invalid verification code. Please try again.']);
         }
-    } elseif ($action === 'forgot_password') {
+    }
+    elseif ($action === 'forgot_password') {
         $email = trim($_POST['email'] ?? '');
         if (empty($email)) {
             echo json_encode(['success' => false, 'message' => 'Please enter your email or username.']);
@@ -121,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $code = rand(100000, 999999);
                 $_SESSION['reset_email'] = $user['email'];
                 $_SESSION['reset_code'] = $code;
-
+                
                 // Simulation: Display code for dev convenience
                 echo json_encode(['success' => true, 'message' => "Reset code: $code (Simulated email sent to " . $user['email'] . ")", 'redirect' => 'reset_password.php']);
             } else {
@@ -130,10 +116,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } catch (PDOException $e) {
             echo json_encode(['success' => false, 'message' => 'Database error.']);
         }
-    } elseif ($action === 'reset_password') {
+    }
+    elseif ($action === 'reset_password') {
         $code = trim($_POST['code'] ?? '');
         $newPassword = $_POST['password'] ?? '';
-
+        
         if (empty($code) || empty($newPassword)) {
             echo json_encode(['success' => false, 'message' => 'Code and new password are required.']);
             exit;
@@ -156,17 +143,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 } elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && $action === 'logout') {
-    if (session_status() === PHP_SESSION_NONE) {
-        session_start();
-    }
     session_destroy();
-
-    // Dynamic redirect based on where the user logged out from or where the file exists
-    if (file_exists(__DIR__ . '/../uploads/login.php')) {
-        header("Location: ../uploads/login.php");
-    } else {
-        header("Location: ../login.php");
-    }
+    header("Location: ../login.php");
     exit;
 } else {
     echo json_encode(['success' => false, 'message' => 'Invalid request.']);
