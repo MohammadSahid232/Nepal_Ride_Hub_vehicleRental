@@ -13,11 +13,11 @@ if ($action === 'upload_document' && $isPost) {
         echo json_encode(['success' => false, 'message' => 'Unauthorized']);
         exit;
     }
-    
+
     $userId = $_SESSION['user_id'];
     $docType = $_POST['document_type'] ?? '';
     $expiry = !empty($_POST['expiry_date']) ? $_POST['expiry_date'] : null;
-    
+
     if (!in_array($docType, ['citizenship', 'license', 'passport'])) {
         echo json_encode(['success' => false, 'message' => 'Invalid document type']);
         exit;
@@ -40,7 +40,8 @@ if ($action === 'upload_document' && $isPost) {
 
     // Ensure directory exists
     $uploadDir = '../uploads/documents/';
-    if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
+    if (!is_dir($uploadDir))
+        mkdir($uploadDir, 0777, true);
 
     $newFileName = $userId . '_' . $docType . '_' . time() . '.' . $extension;
     $destPath = $uploadDir . $newFileName;
@@ -54,9 +55,9 @@ if ($action === 'upload_document' && $isPost) {
 
             $stmt = $pdo->prepare("INSERT INTO user_documents (user_id, document_type, file_path, status, expiry_date) VALUES (?, ?, ?, 'pending', ?)");
             $stmt->execute([$userId, $docType, $dbPath, $expiry]);
-            
+
             echo json_encode(['success' => true, 'message' => 'Document uploaded explicitly. Waiting for Admin verification.']);
-        } catch(PDOException $e) {
+        } catch (PDOException $e) {
             echo json_encode(['success' => false, 'message' => 'DB Error: ' . $e->getMessage()]);
         }
     } else {
@@ -78,7 +79,7 @@ elseif ($action === 'list_pending_docs') {
             ORDER BY d.uploaded_at ASC
         ");
         echo json_encode(['success' => true, 'documents' => $stmt->fetchAll()]);
-    } catch(PDOException $e) {
+    } catch (PDOException $e) {
         echo json_encode(['success' => false, 'message' => 'DB Error']);
     }
 }
@@ -88,10 +89,10 @@ elseif ($action === 'verify_document' && $isPost) {
         echo json_encode(['success' => false, 'message' => 'Unauthorized']);
         exit;
     }
-    
+
     $docId = $_POST['document_id'] ?? 0;
     $status = $_POST['status'] ?? '';
-    
+
     if (!in_array($status, ['verified', 'rejected'])) {
         echo json_encode(['success' => false, 'message' => 'Invalid status']);
         exit;
@@ -101,55 +102,60 @@ elseif ($action === 'verify_document' && $isPost) {
         $stmt = $pdo->prepare("UPDATE user_documents SET status = ? WHERE id = ?");
         $stmt->execute([$status, $docId]);
         echo json_encode(['success' => true, 'message' => 'Document ' . $status . ' successfully.']);
-    } catch(PDOException $e) {
+    } catch (PDOException $e) {
         echo json_encode(['success' => false, 'message' => 'DB Error']);
     }
-} 
+}
 // Admin: Fetch documents for a specific user
 elseif ($action === 'get_user_documents') {
     if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         echo json_encode(['success' => false, 'message' => 'Unauthorized']);
         exit;
     }
-    
+
     $userId = $_GET['user_id'] ?? 0;
     try {
         $stmt = $pdo->prepare("SELECT * FROM user_documents WHERE user_id = ? ORDER BY uploaded_at DESC");
         $stmt->execute([$userId]);
         echo json_encode(['success' => true, 'documents' => $stmt->fetchAll()]);
-    } catch(PDOException $e) {
+    } catch (PDOException $e) {
         echo json_encode(['success' => false, 'message' => 'DB Error']);
     }
 }
-// Customer: Update profile information
+// User: Update profile information (Name, Phone, etc.)
 elseif ($action === 'update_profile' && $isPost) {
-    if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'customer') {
+    if (!isset($_SESSION['user_id'])) {
         echo json_encode(['success' => false, 'message' => 'Unauthorized']);
         exit;
     }
-    
+
     $userId = $_SESSION['user_id'];
+    $role = $_SESSION['role'] ?? 'customer';
+
     $name = trim($_POST['name'] ?? '');
     $phone = trim($_POST['phone'] ?? '');
-    
+    $email = trim($_POST['email'] ?? '');
+    $location = trim($_POST['location'] ?? '');
+    $country = trim($_POST['country'] ?? '');
+
     if (empty($name) || empty($phone)) {
         echo json_encode(['success' => false, 'message' => 'Name and phone are required.']);
         exit;
     }
 
     try {
-        $stmt = $pdo->prepare("UPDATE users SET name = ?, phone = ? WHERE id = ?");
-        $stmt->execute([$name, $phone, $userId]);
-        
+        // All roles can update Name, Phone, Email, Location, and Country
+        $stmt = $pdo->prepare("UPDATE users SET name = ?, phone = ?, email = ?, location = ?, country = ? WHERE id = ?");
+        $stmt->execute([$name, $phone, $email, $location, $country, $userId]);
+
         // Update session name for the header
         $_SESSION['name'] = $name;
-        
+
         echo json_encode(['success' => true, 'message' => 'Profile updated successfully!']);
-    } catch(PDOException $e) {
-        echo json_encode(['success' => false, 'message' => 'DB Error']);
+    } catch (PDOException $e) {
+        echo json_encode(['success' => false, 'message' => 'DB Error: ' . $e->getMessage()]);
     }
-}
-else {
+} else {
     echo json_encode(['success' => false, 'message' => 'Invalid Action']);
 }
 ?>
