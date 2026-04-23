@@ -88,7 +88,8 @@ if ($role === 'admin') {
                     alt="Avatar" class="profile-avatar">
                 <div>
                     <h1 style="font-size: 2.2rem; font-weight: 800; color: #111; margin-bottom: 0.5rem;">
-                        <?php echo htmlspecialchars($user['name']); ?></h1>
+                        <?php echo htmlspecialchars($user['name']); ?>
+                    </h1>
                     <div style="display: flex; align-items: center; gap: 0.75rem;">
                         <span
                             style="background: #eef2f3; padding: 0.4rem 1rem; border-radius: 50px; font-size: 0.8rem; font-weight: 700; color: #555;">
