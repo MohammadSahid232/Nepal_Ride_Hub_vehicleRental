@@ -138,7 +138,7 @@ document.getElementById('resetForm').addEventListener('submit', function(e) {
             authAlert.textContent = data.message;
             setTimeout(() => {
                 window.location.href = data.redirect;
-            }, 2000);
+            }, 4000);
         } else {
             authAlert.className = 'alert alert-danger';
             authAlert.textContent = data.message;

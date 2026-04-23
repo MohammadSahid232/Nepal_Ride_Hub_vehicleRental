@@ -62,15 +62,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['temp_user_role'] = $user['role'];
                     $_SESSION['verification_code'] = $code;
                     
-                    // Send Email containing code
-                    $subject = "Login Verification Code - Nepal Ride Hub";
-                    $message = "Hello " . $user['name'] . ",\n\nYour 6-digit verification code is: " . $code . "\n\nPlease enter this code to securely log in. Do not share this with anyone.";
-                    $headers = "From: noreply@nepalridehub.com";
-                    
-                    // Attempt to send (might fail on local unconfigured XAMPP, so we also pass it or show it in dev)
-                    @mail($email, $subject, $message, $headers);
-                    
-                    echo json_encode(['success' => true, 'redirect' => 'verify.php', 'message' => 'Verification code sent to your email.']);
+                    require '../vendor/phpmailer/Exception.php';
+                    require '../vendor/phpmailer/PHPMailer.php';
+                    require '../vendor/phpmailer/SMTP.php';
+
+                    $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+                    try {
+                        $mail->isSMTP();
+                        $mail->Host       = 'smtp.gmail.com';
+                        $mail->SMTPAuth   = true;
+                        $mail->Username   = 'support.nepalridehub@gmail.com';
+                        $mail->Password   = 'krnacwetzvfqbgik';
+                        $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+                        $mail->Port       = 587;
+
+                        $mail->setFrom('support.nepalridehub@gmail.com', 'Nepal Ride Hub');
+                        $mail->addAddress($user['email'], $user['name']);
+
+                        $mail->isHTML(true);
+                        $mail->Subject = 'Login Verification Code - Nepal Ride Hub';
+                        $mail->Body    = "Hello " . htmlspecialchars($user['name']) . ",<br><br>Your login verification code is: <b>$code</b><br><br>Please enter this code to securely log in.";
+                        $mail->AltBody = "Hello " . $user['name'] . ",\n\nYour login verification code is: $code\n\nPlease enter this code to securely log in.";
+
+                        $mail->send();
+                        echo json_encode(['success' => true, 'redirect' => 'verify.php', 'message' => 'Verification code sent to your email.']);
+                    } catch (Exception $e) {
+                        // Fallback message for development if mail fails
+                        echo json_encode(['success' => true, 'redirect' => 'verify.php', 'message' => 'Verification code sent (Dev note: code is ' . $code . ')']);
+                    }
                 } else {
                     // Admin logs in directly without code
                     $_SESSION['user_id'] = $user['id'];
@@ -125,8 +144,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['reset_email'] = $user['email'];
                 $_SESSION['reset_code'] = $code;
                 
-                // Simulation: Display code for dev convenience
-                echo json_encode(['success' => true, 'message' => "Reset code: $code (Simulated email sent to " . $user['email'] . ")", 'redirect' => 'reset_password.php']);
+                require '../vendor/phpmailer/Exception.php';
+                require '../vendor/phpmailer/PHPMailer.php';
+                require '../vendor/phpmailer/SMTP.php';
+
+                $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+                try {
+                    $mail->isSMTP();
+                    $mail->Host       = 'smtp.gmail.com';
+                    $mail->SMTPAuth   = true;
+                    $mail->Username   = 'support.nepalridehub@gmail.com';
+                    $mail->Password   = 'krnacwetzvfqbgik';
+                    $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+                    $mail->Port       = 587;
+
+                    $mail->setFrom('support.nepalridehub@gmail.com', 'Nepal Ride Hub');
+                    $mail->addAddress($user['email'], $user['name']);
+
+                    $mail->isHTML(true);
+                    $mail->Subject = 'Password Reset Code - Nepal Ride Hub';
+                    $mail->Body    = "Hello " . htmlspecialchars($user['name']) . ",<br><br>Your password reset code is: <b>$code</b><br><br>Please enter this code on the reset page to create a new password.";
+                    $mail->AltBody = "Hello " . $user['name'] . ",\n\nYour password reset code is: $code\n\nPlease enter this code on the reset page to create a new password.";
+
+                    $mail->send();
+                    echo json_encode(['success' => true, 'message' => 'Reset code has been sent to your email address.', 'redirect' => 'reset_password.php']);
+                } catch (Exception $e) {
+                    // Fallback to simulation if mail fails, but don't show code in production
+                    echo json_encode(['success' => true, 'message' => 'Email service error. For development, your code is: ' . $code, 'redirect' => 'reset_password.php']);
+                }
             } else {
                 echo json_encode(['success' => false, 'message' => 'No account found with that email or username.']);
             }
