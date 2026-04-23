@@ -167,28 +167,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Advanced Features: Simple Chatbot UI Simulator
-    const createChatbot = () => {
-        const botDiv = document.createElement('div');
-        botDiv.style.position = 'fixed';
-        botDiv.style.bottom = '20px';
-        botDiv.style.right = '20px';
-        botDiv.style.zIndex = '9999';
-
-        const botBtn = document.createElement('button');
-        botBtn.innerHTML = '<i class="fas fa-comment-dots"></i> Help';
-        botBtn.className = 'btn btn-primary';
-        botBtn.style.borderRadius = '50px';
-        botBtn.style.boxShadow = '0 4px 10px rgba(0,0,0,0.3)';
-
-        botBtn.onclick = () => {
-            alert("Nepal Ride Hub Assistant: Hello! Our 24/7 AI Chatbot integration is currently running in simulation mode. How can we assist your journey today?");
-        };
-
-        botDiv.appendChild(botBtn);
-        document.body.appendChild(botDiv);
-    };
-
-    // Initialize AI Assistant
-    createChatbot();
+    // AI Assistant is now handled by js/ai_chatbot.js
 });
