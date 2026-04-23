@@ -164,6 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+<<<<<<< HEAD
     // Advanced Features: Simple Chatbot UI Simulator
     const createChatbot = () => {
         const botDiv = document.createElement('div');
@@ -189,3 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize AI Assistant
     createChatbot();
 });
+=======
+    // AI Assistant is now handled by js/ai_chatbot.js
+});
+>>>>>>> origin/prajwal
