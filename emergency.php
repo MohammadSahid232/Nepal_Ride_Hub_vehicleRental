@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 include 'includes/header.php';
 require_once 'includes/db_connect.php';
@@ -8,9 +7,9 @@ $stmt = $pdo->query("SELECT * FROM emergency_contacts WHERE is_active = 1 ORDER 
 $contacts = $stmt->fetchAll();
 
 $isLoggedIn = isset($_SESSION['user_id']);
-$userId    = $isLoggedIn ? $_SESSION['user_id']   : null;
-$userRole  = $isLoggedIn ? ($_SESSION['role'] ?? 'customer') : null;
-$isAdmin   = ($userRole === 'admin');
+$userId = $isLoggedIn ? $_SESSION['user_id'] : null;
+$userRole = $isLoggedIn ? ($_SESSION['role'] ?? 'customer') : null;
+$isAdmin = ($userRole === 'admin');
 $isCustomer = ($isLoggedIn && !$isAdmin);
 
 // Only fetch bookings for customers
@@ -21,8 +20,7 @@ if ($isCustomer) {
     $bookings = $bStmt->fetchAll();
 }
 ?>
-<?php include 'includes/footer.php'; ?>
-=======
+
 <section style="padding: 4rem 0; background-color: #fcebeb; min-height: 80vh;">
     <div class="container">
 
@@ -84,16 +82,18 @@ if ($isCustomer) {
                 <?php elseif ($isAdmin): ?>
                     <!-- Admin cannot submit emergency reports -->
                     <div style="text-align: center; padding: 2rem 1rem;">
-                        <div style="width: 80px; height: 80px; border-radius: 50%; background: #fff3cd; color: #856404; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; margin: 0 auto 1.5rem;">
+                        <div
+                            style="width: 80px; height: 80px; border-radius: 50%; background: #fff3cd; color: #856404; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; margin: 0 auto 1.5rem;">
                             <i class="fas fa-shield-halved"></i>
                         </div>
                         <h4 style="color: #111; margin-bottom: 0.75rem;">Admin Account Detected</h4>
                         <p style="color: #666; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
                             Emergency incident reporting is a <strong>customer-only</strong> feature.<br>
-                            As an administrator, you can <strong>view and manage</strong> all submitted emergency reports from your dashboard.
+                            As an administrator, you can <strong>view and manage</strong> all submitted emergency reports
+                            from your dashboard.
                         </p>
                         <a href="admin_dashboard.php#emergency-reports" class="btn btn-primary"
-                           style="background: var(--primary-blue); display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.8rem; border-radius: 8px;">
+                            style="background: var(--primary-blue); display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.8rem; border-radius: 8px;">
                             <i class="fas fa-bell"></i> View Emergency Reports
                         </a>
                     </div>
@@ -229,4 +229,5 @@ if ($isCustomer) {
         }
     });
 </script>
->>>>>>> origin/prajwal
+
+<?php include 'includes/footer.php'; ?>

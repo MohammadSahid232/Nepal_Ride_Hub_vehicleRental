@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 <?php
-include '../includes/header.php';
+include 'includes/header.php';
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    header('Location: ../uploads/login.php');
+    header('Location: login.php');
     exit;
 }
-require_once '../includes/db_connect.php';
+require_once 'includes/db_connect.php';
 
 // Fetch all bookings
 $stmt = $pdo->query("
@@ -17,10 +16,7 @@ $stmt = $pdo->query("
 ");
 $bookings = $stmt->fetchAll();
 ?>
-<<<<<<< HEAD:uploads/manage_bookings_ui.php
 
-=======
->>>>>>> origin/prajwal
 <section style="padding: 4rem 0;">
     <div class="container">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
@@ -46,47 +42,39 @@ $bookings = $stmt->fetchAll();
                             </tr>
                         </thead>
                         <tbody>
-<<<<<<< HEAD
-                            <?php foreach($bookings as $b): ?>
-=======
                             <?php foreach ($bookings as $b): ?>
->>>>>>> origin/prajwal
                                 <tr style="border-bottom: 1px solid var(--border-color);">
-                                    <td style="padding: 1rem;">#<?php echo str_pad($b['id'], 4, '0', STR_PAD_LEFT); ?></td>
-                                    <td style="padding: 1rem;">
-                                        <strong><?php echo htmlspecialchars($b['user_name']); ?></strong><br>
-                                        <small><?php echo htmlspecialchars($b['email']); ?></small>
+                                    <td style="padding: 1rem;">#
+                                        <?php echo str_pad($b['id'], 4, '0', STR_PAD_LEFT); ?>
                                     </td>
                                     <td style="padding: 1rem;">
-<<<<<<< HEAD
-                                        <?php echo htmlspecialchars($b['vehicle_name']); ?>
-                                        <small>(<?php echo ucfirst($b['vehicle_type']); ?>)</small>
-=======
-                                        <strong><?php echo htmlspecialchars($b['vehicle_name']); ?></strong>
-                                        <br><small>(<?php echo ucfirst($b['vehicle_type']); ?>)</small>
+                                        <strong>
+                                            <?php echo htmlspecialchars($b['user_name']); ?>
+                                        </strong><br>
+                                        <small>
+                                            <?php echo htmlspecialchars($b['email']); ?>
+                                        </small>
+                                    </td>
+                                    <td style="padding: 1rem;">
+                                        <strong>
+                                            <?php echo htmlspecialchars($b['vehicle_name']); ?>
+                                        </strong>
+                                        <br><small>(
+                                            <?php echo ucfirst($b['vehicle_type']); ?>)
+                                        </small>
                                         <?php if (isset($b['with_driver']) && $b['with_driver']): ?>
                                             <div style="margin-top: 0.3rem;"><span
                                                     style="background:var(--primary-blue); color:white; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem;"><i
                                                         class="fas fa-user-tie"></i> With Driver</span></div>
                                         <?php endif; ?>
->>>>>>> origin/prajwal
                                     </td>
                                     <td style="padding: 1rem;">
-                                        <?php echo $b['start_date']; ?><br>to <?php echo $b['end_date']; ?>
+                                        <?php echo $b['start_date']; ?><br>to
+                                        <?php echo $b['end_date']; ?>
                                     </td>
-<<<<<<< HEAD
-                                    <td style="padding: 1rem; font-weight: 600; color: var(--primary-blue);">Rs. <?php echo $b['total_amount']; ?></td>
-                                    <td style="padding: 1rem;">
-                                        <?php 
-                                            $bg = '#fff3cd'; $col = '#856404'; // pending
-                                            if($b['status'] === 'confirmed') { $bg = '#d4edda'; $col = '#155724'; }
-                                            if($b['status'] === 'cancelled') { $bg = '#f8d7da'; $col = '#721c24'; }
-                                            if($b['status'] === 'completed') { $bg = '#d1ecf1'; $col = '#0c5460'; }
-                                        ?>
-                                        <span style="padding: 0.3rem 0.6rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; background: <?php echo $bg; ?>; color: <?php echo $col; ?>;">
-=======
                                     <td style="padding: 1rem; font-weight: 600; color: var(--primary-blue);">Rs.
-                                        <?php echo $b['total_amount']; ?></td>
+                                        <?php echo $b['total_amount']; ?>
+                                    </td>
                                     <td style="padding: 1rem;">
                                         <?php
                                         $bg = '#fff3cd';
@@ -106,18 +94,10 @@ $bookings = $stmt->fetchAll();
                                         ?>
                                         <span
                                             style="padding: 0.3rem 0.6rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; background: <?php echo $bg; ?>; color: <?php echo $col; ?>;">
->>>>>>> origin/prajwal
                                             <?php echo ucfirst($b['status']); ?>
                                         </span>
                                     </td>
                                     <td style="padding: 1rem; display: flex; gap: 0.5rem;">
-<<<<<<< HEAD
-                                        <?php if($b['status'] === 'pending'): ?>
-                                            <button onclick="updateBooking(<?php echo $b['id']; ?>, 'confirmed')" class="btn" style="background: var(--success); color: white; padding: 0.3rem 0.6rem; font-size: 0.8rem;">Confirm</button>
-                                            <button onclick="updateBooking(<?php echo $b['id']; ?>, 'cancelled')" class="btn" style="background: var(--danger); color: white; padding: 0.3rem 0.6rem; font-size: 0.8rem;">Reject</button>
-                                        <?php elseif($b['status'] === 'confirmed'): ?>
-                                            <button onclick="updateBooking(<?php echo $b['id']; ?>, 'completed')" class="btn" style="background: var(--primary-blue); color: white; padding: 0.3rem 0.6rem; font-size: 0.8rem;">Mark Completed</button>
-=======
                                         <?php if ($b['status'] === 'pending'): ?>
                                             <button onclick="updateBooking(<?php echo $b['id']; ?>, 'confirmed')" class="btn"
                                                 style="background: var(--success); color: white; padding: 0.3rem 0.6rem; font-size: 0.8rem;">Confirm</button>
@@ -127,7 +107,6 @@ $bookings = $stmt->fetchAll();
                                             <button onclick="updateBooking(<?php echo $b['id']; ?>, 'completed')" class="btn"
                                                 style="background: var(--primary-blue); color: white; padding: 0.3rem 0.6rem; font-size: 0.8rem;">Mark
                                                 Completed</button>
->>>>>>> origin/prajwal
                                         <?php else: ?>
                                             <span style="color: var(--gray-text); font-size: 0.8rem;">No Actions</span>
                                         <?php endif; ?>
@@ -143,35 +122,6 @@ $bookings = $stmt->fetchAll();
 </section>
 
 <script>
-<<<<<<< HEAD
-async function updateBooking(id, status) {
-    if(!confirm(`Are you sure you want to change this booking to ${status}?`)) return;
-    
-    const formData = new FormData();
-    formData.append('booking_id', id);
-    formData.append('status', status);
-
-    try {
-        const response = await fetch('../api/manage_bookings.php?action=update_status', {
-            method: 'POST', body: formData
-        });
-        const data = await response.json();
-        if(data.success) {
-            alert(data.message);
-            location.reload();
-        } else {
-            alert("Error: " + data.message);
-        }
-    } catch {
-        alert("Failed to update booking status.");
-    }
-}
-</script>
-
-<?php include '../includes/footer.php'; ?>
-=======
->>>>>>> origin/sahid:manage_bookings_ui.php
-=======
     async function updateBooking(id, status) {
         if (!confirm(`Are you sure you want to change this booking to ${status}?`)) return;
 
@@ -195,4 +145,5 @@ async function updateBooking(id, status) {
         }
     }
 </script>
->>>>>>> origin/prajwal
+
+<?php include 'includes/footer.php'; ?>

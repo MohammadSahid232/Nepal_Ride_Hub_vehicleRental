@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-<?php include '../includes/header.php'; ?>
-=======
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -60,17 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mail->Host       = 'smtp.gmail.com';
         $mail->SMTPAuth   = true;
         $mail->Username   = 'support.nepalridehub@gmail.com';
-        /*
-         * HOW TO GET GMAIL APP PASSWORD:
-         * 1. Login to: myaccount.google.com
-         *    Account: support.nepalridehub@gmail.com
-         * 2. Security → Enable 2-Step Verification
-         * 3. Security → Search "App Passwords"
-         * 4. App name: "Nepal Ride Hub" → Create
-         * 5. Copy the 16 character password shown
-         * 6. Remove all spaces from the password
-         * 7. Paste it below replacing YOUR_APP_PASSWORD
-         */
         $mail->Password   = 'krnacwetzvfqbgik';
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
@@ -143,7 +129,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <?php include 'includes/header.php'; ?>
->>>>>>> origin/Suraj-K.Sah
 
 <style>
     .contact-container {
@@ -247,17 +232,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <!-- Right: Form -->
             <div class="contact-form">
-<<<<<<< HEAD
-                <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 2.5rem;">Send Message</h2>
-                
-                <form action="#" method="POST">
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                        <input type="text" placeholder="Full Name" required>
-                        <input type="email" placeholder="Email Address" required>
-                    </div>
-                    <input type="text" placeholder="Subject" required>
-                    <textarea placeholder="How can we help you?" style="height: 15rem; resize: none;" required></textarea>
-=======
                 <?php if (isset($_SESSION['nrh_msg'])): ?>
                     <?php 
                         $msgType = $_SESSION['nrh_msg_type'] === 'success' ? 'success' : 'error'; 
@@ -290,7 +264,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <input type="text" name="subject" placeholder="Subject" value="<?php echo isset($_SESSION['nrh_form_subject']) ? htmlspecialchars($_SESSION['nrh_form_subject']) : ''; ?>" required>
                     <textarea name="message" placeholder="How can we help you?" style="height: 15rem; resize: none;" required><?php echo isset($_SESSION['nrh_form_message']) ? htmlspecialchars($_SESSION['nrh_form_message']) : ''; ?></textarea>
->>>>>>> origin/Suraj-K.Sah
                     
                     <button type="submit" class="btn-blue-solid" style="width: 100%; padding: 1.2rem; border-radius: 12px; font-weight: 700; box-shadow: 0 8px 20px rgba(53,97,255,0.25);">Send Your Message</button>
                 </form>
@@ -299,8 +272,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 </div>
 
-<<<<<<< HEAD
-<?php include '../includes/footer.php'; ?>
-=======
 <?php include 'includes/footer.php'; ?>
->>>>>>> origin/Suraj-K.Sah

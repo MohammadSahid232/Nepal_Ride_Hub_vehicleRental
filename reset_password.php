@@ -6,7 +6,7 @@ if (!isset($_SESSION['reset_email'])) {
     header('Location: forgot_password.php');
     exit;
 }
-include '../includes/header.php'; 
+include 'includes/header.php'; 
 ?>
 <style>
 /* Hide the default navbar and footer */
@@ -125,7 +125,7 @@ body::before {
 document.getElementById('resetForm').addEventListener('submit', function(e) {
     e.preventDefault();
     const formData = new FormData(this);
-    fetch('../api/auth.php?action=reset_password', {
+    fetch('api/auth.php?action=reset_password', {
         method: 'POST',
         body: formData
     })

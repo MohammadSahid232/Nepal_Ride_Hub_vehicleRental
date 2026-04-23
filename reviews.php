@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 // reviews.php — VRS-60: Reviews & Ratings Page
 include 'includes/header.php';
@@ -60,8 +59,6 @@ foreach ($distribution as $d) {
     $distMap[$d['rating']] = $d['cnt'];
 }
 ?>
-<?php include 'includes/footer.php'; ?>
-=======
 <style>
     /* ── Reviews & Ratings Page ── */
     .reviews-hero {
@@ -941,4 +938,4 @@ foreach ($distribution as $d) {
         if (e.target === e.currentTarget) closeEditModal();
     });
 </script>
->>>>>>> origin/Suraj-K.Sah
+<?php include 'includes/footer.php'; ?>

@@ -94,8 +94,6 @@ if (isset($_GET['code'])) {
     header("Location: ../login.php");
     exit;
 }
-<<<<<<< HEAD
-
 function showSetupHelp($provider) {
     echo "
     <div style='text-align:center; margin-top:100px; font-family:\"Inter\", sans-serif;'>
@@ -111,6 +109,3 @@ function showSetupHelp($provider) {
     </div>";
 }
 ?>
-=======
-?>
->>>>>>> origin/seraj

@@ -1,13 +1,10 @@
-<?php 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+<?php include 'includes/header.php'; ?>
+<?php
 // Only allow access if temporary session is set
 if (!isset($_SESSION['temp_user_id']) || !isset($_SESSION['verification_code'])) {
     header("Location: login.php");
     exit;
 }
-include '../includes/header.php'; 
 ?>
 
 <section class="auth-section">
@@ -16,18 +13,20 @@ include '../includes/header.php';
             <h2>Two-Step Verification</h2>
             <p>We've sent a 6-digit verification code to your email.</p>
             <div id="verifyAlert" class="alert" style="display: none;"></div>
-            
+
             <form id="verifyForm">
                 <div class="form-group">
                     <label for="code">Verification Code</label>
-                    <input type="text" id="code" name="code" required placeholder="Enter 6-digit code" maxlength="6" pattern="\d{6}">
+                    <input type="text" id="code" name="code" required placeholder="Enter 6-digit code" maxlength="6"
+                        pattern="\d{6}">
                 </div>
-                <button type="submit" class="btn btn-primary btn-block" id="verifyBtn">Verify Code <i class="fas fa-check-circle"></i></button>
+                <button type="submit" class="btn btn-primary btn-block" id="verifyBtn">Verify Code <i
+                        class="fas fa-check-circle"></i></button>
             </form>
             <div class="auth-links">
                 <p>Didn't receive the email? Check your spam folder or <a href="login.php">login again</a>.</p>
             </div>
-            
+
             <?php
             // FOR DEVELOPMENT ONLY: Show the code on screen if XAMPP mail is not configured.
             // In a real production environment, the mail() function handles this, and you would remove this block.
@@ -39,4 +38,4 @@ include '../includes/header.php';
     </div>
 </section>
 
-<?php include '../includes/footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

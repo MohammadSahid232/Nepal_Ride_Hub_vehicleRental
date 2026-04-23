@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -9,21 +8,12 @@ if (!isset($_SESSION['user_id'])) {
 }
 include 'includes/header.php';
 require_once 'includes/db_connect.php';
-=======
-include '../includes/header.php';
-if (!isset($_SESSION['user_id'])) {
-    header('Location: ../uploads/login.php');
-    exit;
-}
-require_once '../includes/db_connect.php';
->>>>>>> origin/prajwal
 
 $userId = $_SESSION['user_id'];
 $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->execute([$userId]);
 $user = $stmt->fetch();
 
-<<<<<<< HEAD
 $role = $user['role'] ?? 'customer';
 if ($role === 'admin') {
     $isFullyVerified = true; // Admins are inherently trusted
@@ -35,15 +25,6 @@ if ($role === 'admin') {
     $isFullyVerified = $verifiedDocs >= 2; // Assuming citizenship and license
 }
 ?>
-<?php include 'includes/footer.php'; ?>
-=======
-// Check Verification Status
-$stmtDocs = $pdo->prepare("SELECT COUNT(*) FROM user_documents WHERE user_id = ? AND status = 'verified'");
-$stmtDocs->execute([$userId]);
-$verifiedDocs = $stmtDocs->fetchColumn();
-$isFullyVerified = $verifiedDocs >= 2; // Assuming citizenship and license
-?>
-
 <style>
     .details-page {
         padding: 5rem 0;
@@ -172,5 +153,4 @@ $isFullyVerified = $verifiedDocs >= 2; // Assuming citizenship and license
     </div>
 </div>
 
-<?php include '../includes/footer.php'; ?>
->>>>>>> origin/prajwal
+<?php include 'includes/footer.php'; ?>

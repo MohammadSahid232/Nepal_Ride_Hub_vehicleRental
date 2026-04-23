@@ -1,4 +1,4 @@
-<?php include '../includes/header.php'; ?>
+<?php include 'includes/header.php'; ?>
 
 <style>
     .blog-header {
@@ -185,4 +185,4 @@
     </div>
 </section>
 
-<?php include '../includes/footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 include 'includes/header.php';
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
@@ -11,8 +10,7 @@ require_once 'includes/db_connect.php';
 $stmt = $pdo->query("SELECT * FROM vehicles ORDER BY created_at DESC");
 $vehicles = $stmt->fetchAll();
 ?>
-<?php include 'includes/footer.php'; ?>
-=======
+
 <section style="padding: 4rem 0;">
     <div class="container">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
@@ -196,4 +194,5 @@ $vehicles = $stmt->fetchAll();
         }
     }
 </script>
->>>>>>> origin/prajwal
+
+<?php include 'includes/footer.php'; ?>

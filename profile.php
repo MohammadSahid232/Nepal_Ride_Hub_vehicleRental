@@ -66,7 +66,8 @@ if ($role === 'customer') {
                 <?php endif; ?>
             </div>
 
-            <div style="display: grid; grid-template-columns: <?php echo $role === 'admin' ? '1fr' : '1fr 1.5fr'; ?>; gap: 2rem;">
+            <div
+                style="display: grid; grid-template-columns: <?php echo $role === 'admin' ? '1fr' : '1fr 1.5fr'; ?>; gap: 2rem;">
 
                 <!-- Left: Account Details & Edit -->
                 <div
@@ -76,7 +77,8 @@ if ($role === 'customer') {
                             alt="Avatar"
                             style="width: 100px; height: 100px; border-radius: 50%; margin-bottom: 1rem; border: 4px solid #f0f4ff;">
                         <h3 style="font-weight: 800; color: #111; margin-bottom: 0.2rem;">
-                            <?php echo htmlspecialchars($user['name']); ?></h3>
+                            <?php echo htmlspecialchars($user['name']); ?>
+                        </h3>
                         <p style="color: #888; font-size: 0.9rem;"><?php echo htmlspecialchars($user['email']); ?></p>
                     </div>
 
@@ -115,15 +117,16 @@ if ($role === 'customer') {
                             <div>
                                 <label
                                     style="display: block; font-weight: 700; font-size: 0.85rem; color: #444; margin-bottom: 0.5rem; text-transform: uppercase;">Location</label>
-                                <input type="text" name="location" value="<?php echo htmlspecialchars($user['location'] ?? ''); ?>"
+                                <input type="text" name="location"
+                                    value="<?php echo htmlspecialchars($user['location'] ?? ''); ?>"
                                     placeholder="e.g. Kathmandu"
                                     style="width: 100%; padding: 0.8rem 1rem; border: 1.5px solid #eee; border-radius: 10px; font-family: 'Inter', sans-serif;">
                             </div>
                             <div>
                                 <label
                                     style="display: block; font-weight: 700; font-size: 0.85rem; color: #444; margin-bottom: 0.5rem; text-transform: uppercase;">Country</label>
-                                <input type="text" name="country" value="<?php echo htmlspecialchars($user['country'] ?? ''); ?>"
-                                    placeholder="Nepal"
+                                <input type="text" name="country"
+                                    value="<?php echo htmlspecialchars($user['country'] ?? ''); ?>" placeholder="Nepal"
                                     style="width: 100%; padding: 0.8rem 1rem; border: 1.5px solid #eee; border-radius: 10px; font-family: 'Inter', sans-serif;">
                             </div>
                         </div>

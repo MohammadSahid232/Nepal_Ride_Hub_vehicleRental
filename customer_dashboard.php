@@ -6,8 +6,8 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'customer') {
     header('Location: login.php');
     exit;
 }
-include '../includes/header.php';
-require_once '../includes/db_connect.php';
+include 'includes/header.php';
+require_once 'includes/db_connect.php';
 
 $userId = $_SESSION['user_id'];
 
@@ -180,21 +180,6 @@ foreach ($documents as $doc) {
                 btn.disabled = true;
                 btn.innerHTML = 'Uploading...';
 
-<<<<<<<< HEAD:uploads/customer_dashboard.php
-            try {
-                const response = await fetch('../api/manage_users.php?action=upload_document', {
-                    method: 'POST',
-                    body: formData
-                });
-                const data = await response.json();
-                
-                alertEl.style.display = 'block';
-                if(data.success) {
-                    alertEl.className = 'alert alert-success';
-                    alertEl.innerHTML = data.message;
-                    setTimeout(() => location.reload(), 1500);
-                } else {
-========
                 try {
                     const response = await fetch('api/manage_users.php?action=upload_document', {
                         method: 'POST',
@@ -214,7 +199,6 @@ foreach ($documents as $doc) {
                         btn.innerHTML = 'Upload Document';
                     }
                 } catch (err) {
->>>>>>>> origin/seraj:costumer_dashboard.php
                     alertEl.className = 'alert alert-danger';
                     alertEl.style.display = 'block';
                     alertEl.innerHTML = 'Upload failed. Try again.';
@@ -226,4 +210,4 @@ foreach ($documents as $doc) {
     });
 </script>
 
-<?php include '../includes/footer.php'; ?>
+<?php include 'includes/footer.php'; ?>

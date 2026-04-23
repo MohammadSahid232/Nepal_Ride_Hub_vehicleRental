@@ -1,16 +1,9 @@
-<<<<<<< HEAD
 <?php
 // includes/header.php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-<<<<<<< HEAD
-
-// Calculate base path for internal links
-$basePath = (strpos($_SERVER['PHP_SELF'], '/uploads/') !== false) ? '../' : './';
 ?>
-=======
->>>>>>> origin/seraj
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,17 +17,19 @@ $basePath = (strpos($_SERVER['PHP_SELF'], '/uploads/') !== false) ? '../' : './'
         href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,600&family=Outfit:ital,wght@0,400;0,600;0,800;1,800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="<?php echo $basePath; ?>css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <div class="top-bar">
         <div class="container top-bar-container">
             <div>
-                <a href="tel:01-234567" style="color: inherit; text-decoration: none;"><i class="fa-solid fa-phone"></i> 01-234567</a>
+                <a href="tel:01-234567" style="color: inherit; text-decoration: none;"><i class="fa-solid fa-phone"></i>
+                    01-234567</a>
             </div>
             <div>
-                <a href="mailto:info@nepalridehub.org" style="color: inherit; text-decoration: none;"><i class="fa-regular fa-envelope"></i> info@nepalridehub.org</a>
+                <a href="mailto:info@nepalridehub.org" style="color: inherit; text-decoration: none;"><i
+                        class="fa-regular fa-envelope"></i> info@nepalridehub.org</a>
             </div>
         </div>
     </div>
@@ -69,16 +64,9 @@ $basePath = (strpos($_SERVER['PHP_SELF'], '/uploads/') !== false) ? '../' : './'
                                 alt="User" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
                             <span
                                 style="font-weight: 700; color: #111; font-size: 0.95rem;"><?php echo htmlspecialchars($_SESSION['name']); ?></span>
-                            <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; color: #888;"></i>
+                                <i class="fa-solid fa-chevron-down" style="font-size: 0.7rem; color: #888;"></i>
                         </div>
                         <!-- Dropdown menu -->
-<<<<<<< HEAD
-                        <div class="dropdown-menu" style="display: none; position: absolute; top: 100%; right: 0; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-radius: 12px; min-width: 180px; z-index: 100; margin-top: 0.5rem; border: 1px solid #eee;">
-                            <a href="user_details.php" style="display: block; padding: 0.8rem 1.2rem; color: #333; text-decoration: none; border-bottom: 1px solid #eee; font-weight: 600;">User Details</a>
-                            <a href="profile.php" style="display: block; padding: 0.8rem 1.2rem; color: #333; text-decoration: none; border-bottom: 1px solid #eee; font-weight: 600;">Edit Profile</a>
-                            <a href="<?php echo ($_SESSION['role']==='admin'?'admin_dashboard.php':'customer_dashboard.php'); ?>" style="display: block; padding: 0.8rem 1.2rem; color: #333; text-decoration: none; border-bottom: 1px solid #eee; font-weight: 600;">Dashboard</a>
-                            <a href="<?php echo $basePath; ?>api/auth.php?action=logout" style="display: block; padding: 0.8rem 1.2rem; color: #da291c; text-decoration: none; font-weight: 600;">Logout</a>
-=======
                         <div class="dropdown-menu"
                             style="display: none; position: absolute; top: 100%; right: 0; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-radius: 12px; min-width: 180px; z-index: 100; margin-top: 0.5rem; border: 1px solid #eee;">
                             <a href="user_details.php"
@@ -89,13 +77,14 @@ $basePath = (strpos($_SERVER['PHP_SELF'], '/uploads/') !== false) ? '../' : './'
                                 Profile</a>
                             <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
                                 <a href="track_vehicles.php"
-                                    style="display: block; padding: 0.8rem 1.2rem; color: #333; text-decoration: none; border-bottom: 1px solid #eee; font-weight: 600;"><i class="fa-solid fa-location-dot" style="margin-right: 8px; color: #3561ff;"></i>Live Tracking</a>
+                                    style="display: block; padding: 0.8rem 1.2rem; color: #333; text-decoration: none; border-bottom: 1px solid #eee; font-weight: 600;"><i
+                                        class="fa-solid fa-location-dot" style="margin-right: 8px; color: #3561ff;"></i>Live
+                                    Tracking</a>
                             <?php endif; ?>
                             <a href="<?php echo ($_SESSION['role'] === 'admin' ? 'admin_dashboard.php' : 'customer_dashboard.php'); ?>"
                                 style="display: block; padding: 0.8rem 1.2rem; color: #333; text-decoration: none; border-bottom: 1px solid #eee; font-weight: 600;">Dashboard</a>
                             <a href="api/auth.php?action=logout"
                                 style="display: block; padding: 0.8rem 1.2rem; color: #da291c; text-decoration: none; font-weight: 600;">Logout</a>
->>>>>>> origin/seraj
                         </div>
                     </li>
                 <?php else: ?>
@@ -108,6 +97,3 @@ $basePath = (strpos($_SERVER['PHP_SELF'], '/uploads/') !== false) ? '../' : './'
         </div>
     </nav>
     <main>
-=======
-?>
->>>>>>> origin/sahid

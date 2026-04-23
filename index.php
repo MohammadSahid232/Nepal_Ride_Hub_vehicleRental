@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-=======
 <?php
-<<<<<<<< HEAD:uploads/index.php
-include '../includes/header.php';
-require_once('../includes/db_connect.php');
-========
 include 'includes/header.php';
 require_once 'includes/db_connect.php';
->>>>>>>> origin/sahid:index.php
 
 try {
     $stmtVehicles = $pdo->query("SELECT * FROM vehicles WHERE status = 'available' ORDER BY created_at DESC LIMIT 3");
@@ -17,7 +10,6 @@ try {
 }
 ?>
 
->>>>>>> origin/sahid
 <style>
     /* Reset and Base Overrides for Mockup */
     .hero-wrapper {
@@ -114,10 +106,7 @@ try {
         width: 100%;
         height: 100%;
         object-fit: cover;
-<<<<<<< HEAD
         transition: opacity 0.4s ease;
-=======
->>>>>>> origin/sahid
     }
 
     .carousel-btn {
@@ -297,7 +286,9 @@ try {
                         <div style="padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1;">
                             <div
                                 style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
-                                <h3><?php echo htmlspecialchars($v['name']); ?></h3>
+                                <h3>
+                                    <?php echo htmlspecialchars($v['name']); ?>
+                                </h3>
                                 <div>
                                     <span
                                         style="background: var(--light-bg); padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.75rem; border: 1px solid var(--border-color); margin-right: 0.2rem;">
@@ -305,16 +296,19 @@ try {
                                     </span>
                                     <span
                                         style="background: #eef2f3; padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.75rem; border: 1px solid #ced4da; color: #495057;">
-                                        <i class="fas fa-route"></i> <?php echo ucfirst($v['condition_type'] ?? 'city'); ?>
+                                        <i class="fas fa-route"></i>
+                                        <?php echo ucfirst($v['condition_type'] ?? 'city'); ?>
                                     </span>
                                 </div>
                             </div>
                             <p style="color: var(--gray-text); margin-bottom: 1rem; font-size: 0.9rem;">
-                                <?php echo htmlspecialchars($v['brand']); ?> &bull; <?php echo $v['model_year']; ?>
+                                <?php echo htmlspecialchars($v['brand']); ?> &bull;
+                                <?php echo $v['model_year']; ?>
                             </p>
                             <div style="margin-bottom: 1.5rem;">
                                 <span style="font-size: 1.4rem; font-weight: 700; color: var(--primary-red);">Rs.
-                                    <?php echo $v['price_per_day']; ?></span>
+                                    <?php echo $v['price_per_day']; ?>
+                                </span>
                                 <span style="color: var(--gray-text); font-size: 0.9rem;">/ day</span>
                             </div>
                             <div style="margin-top: auto;">
@@ -384,7 +378,4 @@ try {
 
 </script>
 
-<<<<<<< HEAD
-=======
-<?php include '../includes/footer.php'; ?>
->>>>>>> origin/sahid
+<?php include 'includes/footer.php'; ?>
