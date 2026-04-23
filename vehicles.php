@@ -17,6 +17,8 @@
                     <option value="bike" <?php if($typeFilter==='bike') echo 'selected'; ?>>Bikes</option>
                     <option value="bus" <?php if($typeFilter==='bus') echo 'selected'; ?>>Tourist Buses</option>
                     <option value="taxi" <?php if($typeFilter==='taxi') echo 'selected'; ?>>Taxi / Cabs</option>
+                    <option value="jeep" <?php if($typeFilter==='jeep') echo 'selected'; ?>>Jeeps</option>
+                    <option value="van" <?php if($typeFilter==='van') echo 'selected'; ?>>Vans</option>
                 </select>
                 <select name="condition" style="padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 4px; flex: 1; min-width: 150px;">
                     <option value="">Any Terrain/Condition</option>
