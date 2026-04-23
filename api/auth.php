@@ -52,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user = $stmt->fetch();
 
             if ($user && password_verify($password, $user['password_hash'])) {
+<<<<<<< HEAD
                 if ($user['role'] === 'customer') {
                     // Generate 6-digit code for 2FA
                     $code = rand(100000, 999999);
@@ -78,6 +79,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['role'] = $user['role'];
                     echo json_encode(['success' => true, 'redirect' => 'admin_dashboard.php', 'message' => 'Login successful!']);
                 }
+=======
+                // Set Session Variables directly (No 2FA required)
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['name'] = $user['name'];
+                $_SESSION['role'] = $user['role'];
+
+                // Determine redirect path
+                $redirect = ($user['role'] === 'admin') ? 'admin_dashboard.php' : 'index.php';
+                
+                echo json_encode(['success' => true, 'redirect' => $redirect, 'message' => 'Login successful!']);
+>>>>>>> origin/sahid
             } else {
                 echo json_encode(['success' => false, 'message' => 'Invalid email or password.']);
             }
@@ -160,6 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 } elseif ($_SERVER['REQUEST_METHOD'] === 'GET' && $action === 'logout') {
+<<<<<<< HEAD
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
@@ -171,6 +184,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         header("Location: ../login.php");
     }
+=======
+    session_destroy();
+    header("Location: ../login.php");
+>>>>>>> origin/sahid
     exit;
 } else {
     echo json_encode(['success' => false, 'message' => 'Invalid request.']);

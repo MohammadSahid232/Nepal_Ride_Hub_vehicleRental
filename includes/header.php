@@ -4,6 +4,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+<<<<<<< HEAD
 
 // Calculate base path for internal links
 $basePath = (strpos($_SERVER['PHP_SELF'], '/uploads/') !== false) ? '../' : './';
@@ -107,3 +108,6 @@ $basePath = (strpos($_SERVER['PHP_SELF'], '/uploads/') !== false) ? '../' : './'
         </div>
     </nav>
     <main>
+=======
+?>
+>>>>>>> origin/sahid

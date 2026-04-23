@@ -1,3 +1,23 @@
+<<<<<<< HEAD
+=======
+<?php
+<<<<<<<< HEAD:uploads/index.php
+include '../includes/header.php';
+require_once('../includes/db_connect.php');
+========
+include 'includes/header.php';
+require_once 'includes/db_connect.php';
+>>>>>>>> origin/sahid:index.php
+
+try {
+    $stmtVehicles = $pdo->query("SELECT * FROM vehicles WHERE status = 'available' ORDER BY created_at DESC LIMIT 3");
+    $featuredVehicles = $stmtVehicles->fetchAll();
+} catch (PDOException $e) {
+    $featuredVehicles = [];
+}
+?>
+
+>>>>>>> origin/sahid
 <style>
     /* Reset and Base Overrides for Mockup */
     .hero-wrapper {
@@ -94,7 +114,10 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+<<<<<<< HEAD
         transition: opacity 0.4s ease;
+=======
+>>>>>>> origin/sahid
     }
 
     .carousel-btn {
@@ -361,3 +384,7 @@
 
 </script>
 
+<<<<<<< HEAD
+=======
+<?php include '../includes/footer.php'; ?>
+>>>>>>> origin/sahid

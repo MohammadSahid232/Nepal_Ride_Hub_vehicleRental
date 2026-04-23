@@ -12,7 +12,7 @@ if ($action === 'create' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $userId = $_SESSION['user_id'];
-    $vehId = (int)($_POST['vehicle_id'] ?? 0);
+    $vehId = (int) ($_POST['vehicle_id'] ?? 0);
     $start = $_POST['start_date'] ?? '';
     $end = $_POST['end_date'] ?? '';
     $purpose = $_POST['purpose'] ?? 'travel';
@@ -45,8 +45,8 @@ if ($action === 'create' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         $vStmt = $pdo->prepare("SELECT price_per_day, status FROM vehicles WHERE id=?");
         $vStmt->execute([$vehId]);
         $veh = $vStmt->fetch();
-        
-        if(!$veh || $veh['status'] !== 'available') {
+
+        if (!$veh || $veh['status'] !== 'available') {
             echo json_encode(['success' => false, 'message' => 'Vehicle is not available.']);
             exit;
         }
@@ -54,30 +54,31 @@ if ($action === 'create' && $_SERVER['REQUEST_METHOD'] === 'POST') {
         // Check if overlaps with confirmed booking
         $olapStmt = $pdo->prepare("SELECT id FROM bookings WHERE vehicle_id=? AND status IN ('confirmed') AND (start_date <= ? AND end_date >= ?)");
         $olapStmt->execute([$vehId, $end, $start]);
-        if($olapStmt->rowCount() > 0) {
+        if ($olapStmt->rowCount() > 0) {
             echo json_encode(['success' => false, 'message' => 'Vehicle already booked for these dates.']);
             exit;
         }
 
+        $withDriver = isset($_POST['with_driver']) && $_POST['with_driver'] == '1' ? 1 : 0;
         $diff = $startDate->diff($endDate)->days;
-        if($diff == 0) $diff = 1;
+        if ($diff == 0)
+            $diff = 1;
         $total = $diff * $veh['price_per_day'];
 
-        $ins = $pdo->prepare("INSERT INTO bookings (user_id, vehicle_id, start_date, end_date, purpose, pickup_location, dropoff_location, total_amount, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending')");
-        $ins->execute([$userId, $vehId, $start, $end, $purpose, $pickup, $dropoff, $total]);
+        $ins = $pdo->prepare("INSERT INTO bookings (user_id, vehicle_id, start_date, end_date, purpose, pickup_location, dropoff_location, with_driver, total_amount, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')");
+        $ins->execute([$userId, $vehId, $start, $end, $purpose, $pickup, $dropoff, $withDriver, $total]);
 
         echo json_encode(['success' => true, 'message' => 'Booking request sent successfully to Admin.']);
-    } catch(PDOException $e) {
+    } catch (PDOException $e) {
         echo json_encode(['success' => false, 'message' => 'DB Error']);
     }
-}
-elseif ($action === 'update_status' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+} elseif ($action === 'update_status' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         echo json_encode(['success' => false, 'message' => 'Unauthorized']);
         exit;
     }
-    
-    $bookingId = (int)($_POST['booking_id'] ?? 0);
+
+    $bookingId = (int) ($_POST['booking_id'] ?? 0);
     $status = $_POST['status'] ?? '';
 
     if (!in_array($status, ['confirmed', 'cancelled', 'completed'])) {
@@ -88,25 +89,26 @@ elseif ($action === 'update_status' && $_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         // If confirmed, make vehicle 'booked'. If completed/cancelled, make vehicle 'available'.
         $pdo->beginTransaction();
-        
+
         $bStmt = $pdo->prepare("SELECT vehicle_id FROM bookings WHERE id=?");
         $bStmt->execute([$bookingId]);
         $bk = $bStmt->fetch();
-        
-        if($bk) {
+
+        if ($bk) {
             $pdo->prepare("UPDATE bookings SET status=? WHERE id=?")->execute([$status, $bookingId]);
             $vehStatus = 'available';
-            if($status === 'confirmed') $vehStatus = 'booked';
-            
+            if ($status === 'confirmed')
+                $vehStatus = 'booked';
+
             $pdo->prepare("UPDATE vehicles SET status=? WHERE id=?")->execute([$vehStatus, $bk['vehicle_id']]);
             $pdo->commit();
-            
+
             echo json_encode(['success' => true, 'message' => 'Booking status updated.']);
         } else {
             $pdo->rollBack();
             echo json_encode(['success' => false, 'message' => 'Booking not found.']);
         }
-    } catch(PDOException $e) {
+    } catch (PDOException $e) {
         $pdo->rollBack();
         echo json_encode(['success' => false, 'message' => 'DB Error']);
     }
