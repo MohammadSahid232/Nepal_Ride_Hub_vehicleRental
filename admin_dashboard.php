@@ -31,42 +31,42 @@ try {
         <div
             style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
             <div onclick="location.href='manage_users_ui.php'"
-                style="background: var(--primary-blue); color: white; padding: 2rem; border-radius: 8px; text-align: center; box-shadow: var(--shadow); cursor: pointer; transition: 0.3s;"
+                style="background: var(--primary-blue); color: white; padding: 2rem; border-radius: 12px; text-align: center; box-shadow: var(--shadow); cursor: pointer; transition: 0.3s;"
                 onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                <h3><?php echo $totalUsers; ?></h3>
-                <p>Total Customers</p>
+                <h3 style="color: white; font-size: 2.5rem; margin-bottom: 0.5rem;"><?php echo $totalUsers; ?></h3>
+                <p style="font-weight: 600; opacity: 0.9;">Total Customers</p>
             </div>
             <div onclick="location.href='manage_vehicles_ui.php'"
-                style="background: var(--primary-red); color: white; padding: 2rem; border-radius: 8px; text-align: center; box-shadow: var(--shadow); cursor: pointer; transition: 0.3s;"
+                style="background: #d32f2f; color: white; padding: 2rem; border-radius: 12px; text-align: center; box-shadow: var(--shadow); cursor: pointer; transition: 0.3s;"
                 onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                <h3><?php echo $totalVehicles; ?></h3>
-                <p>Total Vehicles</p>
+                <h3 style="color: white; font-size: 2.5rem; margin-bottom: 0.5rem;"><?php echo $totalVehicles; ?></h3>
+                <p style="font-weight: 600; opacity: 0.9;">Total Vehicles</p>
             </div>
             <div onclick="location.href='manage_bookings_ui.php'"
-                style="background: #28a745; color: white; padding: 2rem; border-radius: 8px; text-align: center; box-shadow: var(--shadow); cursor: pointer; transition: 0.3s;"
+                style="background: #2e7d32; color: white; padding: 2rem; border-radius: 12px; text-align: center; box-shadow: var(--shadow); cursor: pointer; transition: 0.3s;"
                 onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                <h3><?php echo $pendingBookings; ?></h3>
-                <p>Pending Bookings</p>
+                <h3 style="color: white; font-size: 2.5rem; margin-bottom: 0.5rem;"><?php echo $pendingBookings; ?></h3>
+                <p style="font-weight: 600; opacity: 0.9;">Pending Bookings</p>
             </div>
             <div onclick="location.href='manage_users_ui.php'"
-                style="background: #ffc107; color: #333; padding: 2rem; border-radius: 8px; text-align: center; box-shadow: var(--shadow); cursor: pointer; transition: 0.3s;"
+                style="background: #fbc02d; color: white; padding: 2rem; border-radius: 12px; text-align: center; box-shadow: var(--shadow); cursor: pointer; transition: 0.3s;"
                 onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                <h3><?php echo $pendingDocs; ?></h3>
-                <p>Docs to Verify</p>
+                <h3 style="color: white; font-size: 2.5rem; margin-bottom: 0.5rem;"><?php echo $pendingDocs; ?></h3>
+                <p style="font-weight: 600; opacity: 0.9;">Docs to Verify</p>
             </div>
 
             <div onclick="location.href='manage_reviews.php'"
-                style="background: #17a2b8; color: white; padding: 2rem; border-radius: 8px; text-align: center; box-shadow: var(--shadow); cursor: pointer; transition: 0.3s;"
+                style="background: #00838f; color: white; padding: 2rem; border-radius: 12px; text-align: center; box-shadow: var(--shadow); cursor: pointer; transition: 0.3s;"
                 onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                <h3><?php echo $pendingReviews; ?></h3>
-                <p>Reviews to Moderate</p>
+                <h3 style="color: white; font-size: 2.5rem; margin-bottom: 0.5rem;"><?php echo $pendingReviews; ?></h3>
+                <p style="font-weight: 600; opacity: 0.9;">Reviews to Moderate</p>
             </div>
             <div
-                style="background: #dc3545; color: white; padding: 2rem; border-radius: 8px; text-align: center; box-shadow: var(--shadow); position: relative; cursor: pointer; transition: 0.3s;"
+                style="background: #c62828; color: white; padding: 2rem; border-radius: 12px; text-align: center; box-shadow: var(--shadow); position: relative; cursor: pointer; transition: 0.3s;"
                 onclick="document.getElementById('emergency-reports').scrollIntoView({behavior:'smooth'})"
                 onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-                <h3><?php echo $openEmergencies; ?></h3>
-                <p><i class="fas fa-triangle-exclamation"></i> Open SOS Reports</p>
+                <h3 style="color: white; font-size: 2.5rem; margin-bottom: 0.5rem;"><?php echo $openEmergencies; ?></h3>
+                <p style="font-weight: 600; opacity: 0.9;"><i class="fas fa-triangle-exclamation"></i> Open SOS Reports</p>
             </div>
         </div>
 
