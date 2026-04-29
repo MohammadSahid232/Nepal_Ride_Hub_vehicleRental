@@ -21,13 +21,13 @@ if ($isCustomer) {
 }
 ?>
 
-<section style="padding: 4rem 0; background-color: #fcebeb; min-height: 80vh;">
+<section style="padding: 4rem 0; background-color: #f0f7ff; min-height: 80vh;">
     <div class="container">
 
         <div style="text-align: center; margin-bottom: 3rem;">
             <h1
-                style="color: var(--danger); font-size: 3rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 1rem;">
-                <i class="fas fa-triangle-exclamation"></i> Emergency Center
+                style="color: #3561ff; font-size: 3rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 1rem;">
+                <i class="fas fa-phone-volume"></i> Emergency Center
             </h1>
             <p style="font-size: 1.2rem; color: #555; max-width: 600px; margin: 0 auto;">Immediate assistance for
                 accidents, breakdowns, or critical support while using our services.</p>
@@ -41,9 +41,9 @@ if ($isCustomer) {
                 <div style="display: grid; grid-template-columns: 1fr; gap: 1rem;">
                     <?php foreach ($contacts as $contact): ?>
                         <div
-                            style="background: #fff; padding: 1.5rem; border-radius: 12px; box-shadow: 0 10px 20px rgba(220,53,69,0.08); display: flex; align-items: center; gap: 1.5rem; border-left: 5px solid var(--danger);">
+                            style="background: #fff; padding: 1.5rem; border-radius: 12px; box-shadow: 0 10px 20px rgba(53,97,255,0.05); display: flex; align-items: center; gap: 1.5rem; border-left: 5px solid #3561ff;">
                             <div
-                                style="width: 50px; height: 50px; border-radius: 50%; background: #fee2e2; color: var(--danger); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;">
+                                style="width: 50px; height: 50px; border-radius: 50%; background: #eef2ff; color: #3561ff; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0;">
                                 <i class="fas <?php echo htmlspecialchars($contact['icon']); ?>"></i>
                             </div>
                             <div style="flex: 1;">
@@ -56,8 +56,8 @@ if ($isCustomer) {
                             </div>
                             <div style="text-align: right;">
                                 <a href="tel:<?php echo htmlspecialchars($contact['phone_number']); ?>"
-                                    style="display: inline-block; background: var(--danger); color: white; padding: 0.6rem 1rem; border-radius: 8px; font-weight: 700; text-decoration: none; white-space: nowrap;">
-                                    <i class="fas fa-phone-alt"></i>
+                                    style="display: inline-block; background: #3561ff; color: white; padding: 0.6rem 1rem; border-radius: 8px; font-weight: 700; text-decoration: none; white-space: nowrap;">
+                                    <i class="fas fa-phone-volume"></i>
                                     <?php echo htmlspecialchars($contact['phone_number']); ?>
                                 </a>
                             </div>
@@ -70,7 +70,7 @@ if ($isCustomer) {
             <div
                 style="background: #fff; padding: 2.5rem; border-radius: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.08);">
                 <h3 style="margin-bottom: 1.5rem; color: #111;"><i class="fas fa-location-crosshairs"
-                        style="color: var(--danger);"></i> Report an Incident</h3>
+                        style="color: #3561ff;"></i> Report an Incident</h3>
 
                 <?php if (!$isLoggedIn): ?>
                     <div class="alert alert-warning">
@@ -150,7 +150,7 @@ if ($isCustomer) {
                         </div>
 
                         <button type="submit" id="submitIncBtn" class="btn btn-primary btn-block"
-                            style="background: var(--danger); padding: 1.2rem; font-size: 1.1rem; border-radius: 8px;">
+                            style="background: #3561ff; padding: 1.2rem; font-size: 1.1rem; border-radius: 8px; border: none; font-weight: 700;">
                             <i class="fas fa-paper-plane"></i> Transmit Urgent SOS
                         </button>
                     </form>
