@@ -1,3 +1,28 @@
+<?php
+include 'includes/header.php';
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+    header('Location: login.php');
+    exit;
+}
+require_once 'includes/db_connect.php';
+
+$id = (int) ($_GET['id'] ?? 0);
+if (!$id) {
+    header('Location: manage_vehicles_ui.php');
+    exit;
+}
+
+$stmt = $pdo->prepare("SELECT * FROM vehicles WHERE id = ?");
+$stmt->execute([$id]);
+$v = $stmt->fetch();
+
+if (!$v) {
+    echo "<div class='container'><div class='alert alert-danger'>Vehicle not found.</div></div>";
+    include 'includes/footer.php';
+    exit;
+}
+?>
+
 <section style="padding: 4rem 0;">
     <div class="container" style="max-width: 800px;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
@@ -135,3 +160,5 @@
         }
     });
 </script>
+
+<?php include 'includes/footer.php'; ?>

@@ -116,12 +116,6 @@ if (!$isAdmin && in_array($action, ['update_status', 'edit_vehicle', 'add_vehicl
     exit;
 }
 
-// ── GET single vehicle (for edit form pre-fill) ──────────────────────────────
-if ($action === 'get_vehicle') {
-    $stmt = $pdo->query("SELECT * FROM vehicles ORDER BY created_at DESC");
-    echo json_encode(['success' => true, 'vehicles' => $stmt->fetchAll()]);
-    exit;
-}
 
 // ── UPDATE STATUS only ───────────────────────────────────────────────────────
 if ($action === 'update_status' && $_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -193,12 +193,6 @@ $vehicles = $stmt->fetchAll();
             alert("Delete failed.");
         }
     }
-<<<<<<< HEAD:uploads/manage_vehicles_ui.php
-}
-</script>
-<?php include '../includes/footer.php'; ?>
-=======
 </script>
 
 <?php include 'includes/footer.php'; ?>
->>>>>>> origin/Testing:manage_vehicles_ui.php
