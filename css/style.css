@@ -267,10 +267,20 @@ a:hover {
 
 /* Footer */
 .footer {
-    background-color: var(--dark-bg);
+    background: linear-gradient(135deg, #0a1628 0%, #1a2f5e 50%, #0d3b6b 100%);
     color: var(--white);
-    padding: 3rem 0 1rem;
+    padding: 4rem 0 1rem;
     margin-top: auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 100%, rgba(245, 166, 35, 0.08) 0%, transparent 60%);
+    pointer-events: none;
 }
 
 .footer-content {
@@ -313,7 +323,7 @@ a:hover {
 }
 
 .footer-brand p {
-    color: #aaa;
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .footer-links h4,
@@ -324,25 +334,28 @@ a:hover {
 
 .footer-links a {
     display: block;
-    color: #aaa;
-    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.6rem;
+    font-size: 0.95rem;
 }
 
 .footer-links a:hover {
-    color: var(--primary-red);
-    padding-left: 5px;
+    color: #f5a623;
+    padding-left: 8px;
 }
 
 .footer-contact p {
-    color: #aaa;
-    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 0.8rem;
+    font-size: 0.95rem;
 }
 
 .footer-bottom {
     text-align: center;
-    padding-top: 1rem;
-    border-top: 1px solid #333;
-    color: #aaa;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
     font-size: 0.9rem;
 }
 
@@ -438,10 +451,12 @@ a:hover {
 
 /* Top Bar */
 .top-bar {
-    background-color: var(--new-blue);
+    background: linear-gradient(135deg, #0a1628 0%, #1a2f5e 50%, #0d3b6b 100%);
     color: var(--white);
-    padding: 0.6rem 0;
+    padding: 0.65rem 0;
     font-size: 0.85rem;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .top-bar-container {

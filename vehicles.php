@@ -36,10 +36,10 @@ try {
 }
 ?>
 
-<section style="background: var(--primary-blue); padding: 3rem 0; color: white; text-align: center;">
+<section style="background: linear-gradient(135deg, #0a1628 0%, #1a2f5e 50%, #0d3b6b 100%); padding: 4.5rem 0; color: white; text-align: center; position: relative; overflow: hidden;">
     <div class="container">
-        <h2>Our Fleet</h2>
-        <p>Find the perfect vehicle for your journey across Nepal.</p>
+        <h2 style="color: #fff; font-family: 'Outfit', sans-serif; font-size: 2.8rem; font-weight: 800; margin-bottom: 0.8rem;">Our <span style="color: #f5a623;">Fleet</span></h2>
+        <p style="color: #b0c4de; max-width: 540px; margin: 0 auto;">Find the perfect vehicle for your journey across Nepal.</p>
     </div>
 </section>
 
