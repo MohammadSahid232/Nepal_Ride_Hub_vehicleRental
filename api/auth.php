@@ -64,32 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     
                     require '../vendor/phpmailer/Exception.php';
                     require '../vendor/phpmailer/PHPMailer.php';
-                    require '../vendor/phpmailer/SMTP.php';
-
-                    $mail = new PHPMailer\PHPMailer\PHPMailer(true);
-                    try {
-                        $mail->isSMTP();
-                        $mail->Host       = 'smtp.gmail.com';
-                        $mail->SMTPAuth   = true;
-                        $mail->Username   = 'support.nepalridehub@gmail.com';
-                        $mail->Password   = 'krnacwetzvfqbgik';
-                        $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
-                        $mail->Port       = 587;
-
-                        $mail->setFrom('support.nepalridehub@gmail.com', 'Nepal Ride Hub');
-                        $mail->addAddress($user['email'], $user['name']);
-
-                        $mail->isHTML(true);
-                        $mail->Subject = 'Login Verification Code - Nepal Ride Hub';
-                        $mail->Body    = "Hello " . htmlspecialchars($user['name']) . ",<br><br>Your login verification code is: <b>$code</b><br><br>Please enter this code to securely log in.";
-                        $mail->AltBody = "Hello " . $user['name'] . ",\n\nYour login verification code is: $code\n\nPlease enter this code to securely log in.";
-
-                        $mail->send();
-                        echo json_encode(['success' => true, 'redirect' => 'verify.php', 'message' => 'Verification code sent to your email.']);
-                    } catch (Exception $e) {
-                        // Fallback message for development if mail fails
-                        echo json_encode(['success' => true, 'redirect' => 'verify.php', 'message' => 'Verification code sent (Dev note: code is ' . $code . ')']);
-                    }
+                  
                 } else {
                     // Admin logs in directly without code
                     $_SESSION['user_id'] = $user['id'];
