@@ -2,9 +2,7 @@
 // api/auth.php
 session_start();
 require_once '../includes/db_connect.php';
-
 header('Content-Type: application/json');
-
 $action = $_GET['action'] ?? '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -60,16 +58,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['temp_user_id'] = $user['id'];
                     $_SESSION['temp_user_name'] = $user['name'];
                     $_SESSION['temp_user_role'] = $user['role'];
+                    $_SESSION['temp_user_email'] = $user['email'];
+                    $_SESSION['temp_user_phone'] = $user['phone'];
                     $_SESSION['verification_code'] = $code;
                     
                     require '../vendor/phpmailer/Exception.php';
                     require '../vendor/phpmailer/PHPMailer.php';
-                  
+                    require '../vendor/phpmailer/SMTP.php';
+
+                    $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+                    try {
+                        $mail->isSMTP();
+                        $mail->Host       = 'smtp.gmail.com';
+                        $mail->SMTPAuth   = true;
+                        $mail->Username   = 'support.nepalridehub@gmail.com';
+                        $mail->Password   = 'krnacwetzvfqbgik';
+                        $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+                        $mail->Port       = 587;
+
+                        $mail->setFrom('support.nepalridehub@gmail.com', 'Nepal Ride Hub');
+                        $mail->addAddress($user['email'], $user['name']);
+
+                        $mail->isHTML(true);
+                        $mail->Subject = 'Login Verification Code - Nepal Ride Hub';
+                        $mail->Body    = "Hello " . htmlspecialchars($user['name']) . ",<br><br>Your login verification code is: <b>$code</b><br><br>Please enter this code to securely log in.";
+                        $mail->AltBody = "Hello " . $user['name'] . ",\n\nYour login verification code is: $code\n\nPlease enter this code to securely log in.";
+
+                        $mail->send();
+                        echo json_encode(['success' => true, 'redirect' => 'verify.php', 'message' => 'Verification code sent to your email.']);
+                    } catch (Exception $e) {
+                        // Fallback message for development if mail fails
+                        echo json_encode(['success' => true, 'redirect' => 'verify.php', 'message' => 'Verification code sent (Dev note: code is ' . $code . ')']);
+                    }
                 } else {
                     // Admin logs in directly without code
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['name'] = $user['name'];
                     $_SESSION['role'] = $user['role'];
+                    $_SESSION['email'] = $user['email'];
+                    $_SESSION['phone'] = $user['phone'];
                     echo json_encode(['success' => true, 'redirect' => 'admin_dashboard.php', 'message' => 'Login successful!']);
                 }
             } else {
@@ -91,9 +118,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $_SESSION['temp_user_id'];
             $_SESSION['name'] = $_SESSION['temp_user_name'];
             $_SESSION['role'] = $_SESSION['temp_user_role'];
+            $_SESSION['email'] = $_SESSION['temp_user_email'];
+            $_SESSION['phone'] = $_SESSION['temp_user_phone'];
             
             // Clean up temporary variables
-            unset($_SESSION['temp_user_id'], $_SESSION['temp_user_name'], $_SESSION['temp_user_role'], $_SESSION['verification_code']);
+            unset($_SESSION['temp_user_id'], $_SESSION['temp_user_name'], $_SESSION['temp_user_role'], $_SESSION['temp_user_email'], $_SESSION['temp_user_phone'], $_SESSION['verification_code']);
             
             // Redirect customer to home page index.php
             echo json_encode(['success' => true, 'redirect' => 'index.php', 'message' => 'Verification successful!']);

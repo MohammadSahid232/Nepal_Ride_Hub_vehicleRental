@@ -52,6 +52,30 @@ if (session_status() === PHP_SESSION_NONE) {
             }
         }
     </style>
+    <script>
+        window.CHATBOT_USER = <?php
+        if (!empty($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+            echo json_encode([
+                'logged_in' => true,
+                'role'      => 'admin',
+                'name'      => $_SESSION['name'] ?? 'Admin',
+                'email'     => $_SESSION['email'] ?? '',
+                'id'        => $_SESSION['user_id'] ?? '',
+            ]);
+        } elseif (!empty($_SESSION['user_id'])) {
+            echo json_encode([
+                'logged_in' => true,
+                'role'      => 'user',
+                'name'      => $_SESSION['name'] ?? '',
+                'email'     => $_SESSION['email'] ?? '',
+                'phone'     => $_SESSION['phone'] ?? '',
+                'id'        => $_SESSION['user_id'],
+            ]);
+        } else {
+            echo json_encode(['logged_in' => false]);
+        }
+        ?>;
+    </script>
 </head>
 
 <body>
@@ -86,9 +110,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
             <ul class="nav-links-right" id="navLinks">
                 <li><a href="index.php" class="nav-item">Home</a></li>
-                <?php if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin'): ?>
-                    <li><a href="vehicles.php" class="nav-item">Rent a car</a></li>
-                <?php endif; ?>
+                <li><a href="vehicles.php" class="nav-item">Rent a car</a></li>
 
                 <li><a href="reviews.php" class="nav-item">Reviews</a></li>
                 <li><a href="about.php" class="nav-item">About us</a></li>
