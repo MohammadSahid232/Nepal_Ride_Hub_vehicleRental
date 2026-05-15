@@ -28,7 +28,7 @@
         <p>&copy; <?php echo date('Y'); ?> Nepal Ride Hub. All rights reserved.</p>
     </div>
 </footer>
-<script src="js/ai_chatbot.js?v=<?php echo time(); ?>"></script>
+<script src="js/support_helper.js?v=<?php echo time(); ?>"></script>
 <script src="js/script.js?v=<?php echo time(); ?>"></script>
 
 <!-- Background Live Tracking for Customers -->
