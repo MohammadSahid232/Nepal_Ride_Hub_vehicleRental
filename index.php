@@ -219,9 +219,11 @@ try {
                     <li><i class="fa-solid fa-check"></i> GPS Tracking Available</li>
                     <li><i class="fa-solid fa-check"></i> Wide Range of Vehicles</li>
                 </ul>
-                <a href="vehicles.php" class="btn-blue-solid"
-                    style="padding: 1.2rem 2.8rem; border-radius: 12px; font-size: 1.1rem; box-shadow: 0 10px 25px rgba(53,97,255,0.3);">Explore
-                    Vehicles</a>
+                <?php if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin'): ?>
+                    <a href="vehicles.php" class="btn-blue-solid"
+                        style="padding: 1.2rem 2.8rem; border-radius: 12px; font-size: 1.1rem; box-shadow: 0 10px 25px rgba(53,97,255,0.3);">Explore
+                        Vehicles</a>
+                <?php endif; ?>
             </div>
             <div class="hero-right">
                 <div class="hero-carousel">
@@ -264,6 +266,7 @@ try {
     </div>
 </div>
 
+<?php if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin'): ?>
 <section style="padding: 4rem 0; background: var(--light-bg);">
     <div class="container">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
@@ -322,6 +325,7 @@ try {
         <?php endif; ?>
     </div>
 </section>
+<?php endif; ?>
 
 <section style="padding: 4rem 0;">
     <div class="container">

@@ -86,7 +86,9 @@ if (session_status() === PHP_SESSION_NONE) {
 
             <ul class="nav-links-right" id="navLinks">
                 <li><a href="index.php" class="nav-item">Home</a></li>
-                <li><a href="vehicles.php" class="nav-item">Rent a car</a></li>
+                <?php if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin'): ?>
+                    <li><a href="vehicles.php" class="nav-item">Rent a car</a></li>
+                <?php endif; ?>
 
                 <li><a href="reviews.php" class="nav-item">Reviews</a></li>
                 <li><a href="about.php" class="nav-item">About us</a></li>

@@ -88,7 +88,9 @@
                 <h2 style="font-size: 2.2rem; font-weight: 800; margin-bottom: 1.5rem;">The Premier Choice for Vehicle Rentals in Nepal</h2>
                 <p style="color: #555; margin-bottom: 1.5rem; line-height: 1.8;">Founded with a vision to provide seamless transportation solutions, Nepal Ride Hub has grown into the country's most trusted vehicle rental platform. We understand that every trip in Nepal—whether a city commute, a family pilgrimage, or a mountain adventure—requires a reliable partner.</p>
                 <p style="color: #555; margin-bottom: 1.5rem; line-height: 1.8;">Our fleet features everything from fuel-efficient city cars and rugged 4x4 SUVs to premium motorcycles and heavy-duty buses. Every vehicle in our hub undergoes rigorous multi-point inspections to ensure your safety and comfort.</p>
-                <a href="vehicles.php" class="btn-blue-solid">Explore Our Fleet</a>
+                <?php if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin'): ?>
+                    <a href="vehicles.php" class="btn-blue-solid">Explore Our Fleet</a>
+                <?php endif; ?>
             </div>
             <div>
                 <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=800&q=80" alt="Nepal Trip" style="width: 100%; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
