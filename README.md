@@ -2,7 +2,7 @@
 
 > A full-stack PHP vehicle rental web application for Nepal, featuring AI-powered support, real-time GPS tracking, document verification, and a complete admin management system.
 
-**🌐 Live Website:** [http://nepalridehub.free.nf/](http://nepalridehub.free.nf/)
+**🌐 Live Website:** [http://nepalridehub.free.nf/](https://nepalridehub.free.nf/)
 
 ---
 
@@ -34,10 +34,10 @@ Administrators can manage vehicles, approve bookings, verify customer documents,
 
 | Link | Description |
 |------|-------------|
-| [http://nepalridehub.free.nf/](http://nepalridehub.free.nf/) | Live Production Website |
-| [http://nepalridehub.free.nf/login.php](http://nepalridehub.free.nf/login.php) | Login Page |
-| [http://nepalridehub.free.nf/register.php](http://nepalridehub.free.nf/register.php) | Register Page |
-| [http://nepalridehub.free.nf/vehicles.php](http://nepalridehub.free.nf/vehicles.php) | Browse Vehicles |
+| [http://nepalridehub.free.nf/](https://nepalridehub.free.nf/) | Live Production Website |
+| [http://nepalridehub.free.nf/login.php](https://nepalridehub.free.nf/login.php) | Login Page |
+| [http://nepalridehub.free.nf/register.php](https://nepalridehub.free.nf/register.php) | Register Page |
+| [http://nepalridehub.free.nf/vehicles.php](https://nepalridehub.free.nf/vehicles.php) | Browse Vehicles |
 
 ---
 
@@ -205,7 +205,7 @@ Nepal-Ride-Hub/
 
 ## 🚀 Deployment (InfinityFree)
 
-The live version is deployed at: **[http://nepalridehub.free.nf/](http://nepalridehub.free.nf/)**
+The live version is deployed at: **[https://nepalridehub.free.nf/](https://nepalridehub.free.nf/)**
 
 ### Production Database Config (`includes/db_connect.php`)
 
@@ -233,7 +233,7 @@ $password = 'SaHID786';
 
 | Field | Details |
 |-------|---------|
-| **Website** | [http://nepalridehub.free.nf/](http://nepalridehub.free.nf/) |
+| **Website** | [https://nepalridehub.free.nf/](https://nepalridehub.free.nf/) |
 | **Email** | support@nepalridehub.com |
 | **Phone** | +977 9706421709 |
 | **Location** | Dillibazar, Kathmandu, Nepal |
